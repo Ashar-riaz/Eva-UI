@@ -1,101 +1,180 @@
+// src/app/page.tsx
+import React from "react";
+import Navbar from "../component/Navbar/Nav";
+import "./landing.css";
 import Image from "next/image";
+import arrow from "../assets/arrow.svg";
+import chatting from "../assets/chatting-2.gif";
+import image from "../assets/image.png";
+import step1 from "../assets/step1.svg";
+import step2 from "../assets/step2.svg";
+import step3 from "../assets/step3.svg";
+import company1 from "../assets/company/cdnlogo.com_airbnb-1.png.png";
+import company2 from "../assets/company/cdnlogo.com_black-crows-1.png.png";
+import company3 from "../assets/company/cdnlogo.com_blumhouse-productions-1.png.png";
+import company4 from "../assets/company/cdnlogo.com_dribbble-1.png.png";
+import company5 from "../assets/company/cdnlogo.com_greastudio-1.png.png";
+import company6 from "../assets/company/cdnlogo.com_red-hat-1-1.png.png";
 
-export default function Home() {
+const HomePage: React.FC = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      {/* Include Navbar */}
+      <Navbar />
+      <div className="container-fluid">
+        <div className="flex flex-col md:flex-row">
+          <div className="hero-text md:w-1/2">
+            <div className="second-brain-container">
+              <span className="second-brain-title">Your Second</span>
+              <span className="second-brain-title">Brain</span>
+            </div>
+            <p className="hero-description">
+              Unlock the power of your mind with a digital repository for your
+              <br />
+              knowledge, experiences, and insights. Effortlessly store,
+              organize,
+              <br />
+              and access information that matters, enhancing both your personal
+              <br />
+              and professional life.
+            </p>
+            <button className="btn custom-btn d-flex align-items-center mt-4">
+              <span>GET STARTED</span>
+              <Image
+                src={arrow}
+                alt="Arrow icon"
+                width={16}
+                height={16}
+                className="ms-2"
+              />
+            </button>
+          </div>
+          <div className="md:w-1/2 mt-16 md:mt-0 image">
             <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={chatting}
+              alt="Chatting GIF"
+              width={577}
+              height={588}
+              // className="w-full h-auto"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+      <div className="hero-image">
+        <Image
+          src={image}
+          alt="image"
+          style={{ width: "100% !important" }}
+        ></Image>
+      </div>
+      <div className="flex flex-col items-center mt-[2%] box">
+        <span className="hero-text2">Empowering Product Teams to Excel</span>
+        <div className="flex flex-wrap justify-center gap-[120px] mt-1 mb-5">
+          <Image src={company1} alt="image" />
+          <Image src={company2} alt="image" />
+          <Image src={company3} alt="image" />
+          <Image src={company4} alt="image" />
+          <Image src={company5} alt="image" />
+          <Image src={company6} alt="image" />
+        </div>
+      </div>
+      <div className="mt-[5%] mb-[5%]">
+        <div className="process-divider">
+          <div className="process-divider__line"></div>
+          <span className="process-divider__text">Process</span>
+          <div className="process-divider__line"></div>
+        </div>
+        <span className="engage-title">Engage in Conversations</span>
+        <span className="engage-description">
+          There are many variations of passages of Lorem Ipsum available, but
+          the majority have suffered
+          <br />
+          alteration in some form.
+        </span>
+        <div className="flex flex-col md:flex-row relative mt-[4%] justify-center gap-10">
+          <div className="step1 mb-8 md:mb-0 md:mr-4 md:mt-[-30px]">
+            <div className="step-image-container">
+              <div className="step-image-circle">
+                <div className="step-image">
+                  <Image src={step1} alt="Step 1" className="img" />
+                </div>
+                <div className="step-number">01</div>
+              </div>
+            </div>
+            <p className="step-description">Input Processing</p>
+            <p className="step-subdescription">
+              The chatbot receives user&apos;s message
+              <br />
+              or query and uses NLP.
+            </p>
+          </div>
+          <div className="step2 mb-8 md:mb-0 md:mr-4 md:mt-[30px]">
+            <div className="step-image-container">
+              <div className="step-image-circle">
+                <div className="step-image">
+                  <Image src={step2} alt="Step 2" className="img" />
+                </div>
+                <div className="step-number">02</div>
+              </div>
+            </div>
+            <p className="step-description">Holistic perception</p>
+            <p className="step-subdescription">
+              The chatbot receives user&apos;s message
+              <br />
+              or query and uses NLP.
+            </p>
+          </div>
+          <div className="step3 mb-8 md:mb-0 md:mr-4 md:mt-[-30px]">
+            <div className="step-image-container">
+              <div className="step-image-circle">
+                <div className="step-image">
+                  <Image src={step3} alt="Step 3" className="img" />
+                </div>
+                <div className="step-number">03</div>
+              </div>
+            </div>
+            <p className="step-description">Generate Response</p>
+            <p className="step-subdescription">
+              The chatbot receives user&apos;s message
+              <br />
+              or query and uses NLP.
+            </p>
+          </div>
+          <div className="step4 mb-8 md:mb-0 md:mr-4 md:mt-[30px]">
+            <div className="step-image-container">
+              <div className="step-image-circle">
+                <div className="step-image">
+                  <Image src={step2} alt="Step 4" className="img" />
+                </div>
+                <div className="step-number">04</div>
+              </div>
+            </div>
+            <p className="step-description">Output Delivery</p>
+            <p className="step-subdescription">
+              The chatbot receives user&apos;s message
+              <br />
+              or query and uses NLP.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="about">
+        <div className="process-divider">
+          <div className="process-divider__line"></div>
+          <span className="process-divider__text">About us</span>
+          <div className="process-divider__line"></div>
+        </div>
+        <span className="engage-title">
+          Get to Know Our Chatbot <br /> Assistant - talkie
+        </span>
+        <span className="engage-description">
+          There are many variations of passages of Lorem Ipsum available, but
+          the <br />
+          majority have suffered alteration in some form humor.
+        </span>
+      </div>
+    </>
   );
-}
+};
+
+export default HomePage;

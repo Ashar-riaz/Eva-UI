@@ -7,12 +7,12 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
@@ -24,4 +24,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+:root {
+  --color-blue-27: #302F5B;
+  --font-family-Font-3: 'Poppins', sans-serif;
+  --font-weight-400: 400;
 }
