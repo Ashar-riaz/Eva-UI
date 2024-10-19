@@ -9,12 +9,15 @@ import image from "../assets/image.png";
 import step1 from "../assets/step1.svg";
 import step2 from "../assets/step2.svg";
 import step3 from "../assets/step3.svg";
+import about from "../assets/about.png";
+import check from "../assets/check.svg";
 import company1 from "../assets/company/cdnlogo.com_airbnb-1.png.png";
 import company2 from "../assets/company/cdnlogo.com_black-crows-1.png.png";
 import company3 from "../assets/company/cdnlogo.com_blumhouse-productions-1.png.png";
 import company4 from "../assets/company/cdnlogo.com_dribbble-1.png.png";
 import company5 from "../assets/company/cdnlogo.com_greastudio-1.png.png";
 import company6 from "../assets/company/cdnlogo.com_red-hat-1-1.png.png";
+import Service from "@/component/service/Service";
 
 const HomePage: React.FC = () => {
   return (
@@ -172,7 +175,98 @@ const HomePage: React.FC = () => {
           the <br />
           majority have suffered alteration in some form humor.
         </span>
+        <div className="flex flex-col md:flex-row">
+          <div
+            className="flex-1 min-h-[273px] p-[30px] items-start self-stretch bg-white shadow-[0px_12px_32px_0px_rgba(25,41,66,0.07)]"
+            style={{ minHeight: "273px" }}
+          >
+            <div className="flex h-full">
+              <div className="flex flex-col mr-4">
+                <span className="mb-2 px-4 py-2 cursor-pointer text-blue-500 font-bold">
+                  Our Values
+                </span>
+                <span className="mb-2 px-4 py-2 cursor-pointer text-gray-700">
+                  Our Vision
+                </span>
+                <span className="px-4 py-2 cursor-pointer text-gray-700">
+                  Our Mission
+                </span>
+              </div>
+              <div className="flex-grow">
+                <div id="content-a" className="h-full">
+                  <p>
+                    This is the default content for A. It shows when the page
+                    loads or when A is clicked.
+                  </p>
+                </div>
+                <div id="content-b" className="h-full hidden">
+                  <p>This is the content for B. It shows when B is clicked.</p>
+                </div>
+                <div id="content-c" className="h-full hidden">
+                  <p>This is the content for C. It shows when C is clicked.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="about-image-container mt-4 md:mt-0 md:ml-4">
+            <Image src={about} alt="About Us" className="about-image" />
+          </div>
+        </div>
       </div>
+      <div className="service mt-[80px]">
+        <div className="process-divider">
+          <div className="process-divider__line"></div>
+          <span className="process-divider__text">
+            Why Choose Distill Audio
+          </span>
+          <div className="process-divider__line"></div>
+        </div>
+        <span className="engage-title">Services We Provide</span>
+      </div>
+
+      <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-[80px]">
+          <Service
+            title="Mobile Marketing"
+            description="Convert your audio files into accurate, editable text with our advanced transcription service."
+            imageUrl="/images/transcription-icon.svg"
+            topFeatureImage={check}
+            topFeatureText="Seamless mobile integration for on-the-go marketing"
+            middleFeatureImage={check}
+            middleFeatureText="Seamless mobile integration for on-the-go marketing"
+            bottomFeatureImage={check}
+            bottomFeatureText="Seamless mobile integration for on-the-go marketing"
+            buttonText="Read More"
+            
+          />
+          <Service
+            title="Chatbot Integration"
+            description="Get concise summaries of your audio content, highlighting key points and main ideas."
+            imageUrl="/images/summarization-icon.svg"
+            topFeatureImage={check}
+            topFeatureText="Seamless mobile integration for on-the-go marketing"
+            middleFeatureImage={check}
+            middleFeatureText="Voice-enabled chat-bots"
+            bottomFeatureImage={check}
+            bottomFeatureText="Seamless mobile integration for on-the-go marketing"
+            buttonText="Read More"
+            
+          />
+          <Service
+            title="Machine Learning"
+            description="Automatically identify and extract important keywords and phrases from your audio content."
+            imageUrl="/images/keyword-icon.svg"
+            topFeatureImage={check}
+            topFeatureText="Seamless mobile integration for on-the-go marketing"
+            middleFeatureImage={check}
+            middleFeatureText="Seamless mobile integration for on-the-go marketing"
+            bottomFeatureImage={check}
+            bottomFeatureText="Seamless mobile integration for on-the-go marketing"
+            buttonText="Read More"
+           
+          />
+        </div>
+        </div>
     </>
   );
 };
