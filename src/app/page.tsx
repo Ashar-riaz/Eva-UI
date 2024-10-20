@@ -11,6 +11,11 @@ import step2 from "../assets/step2.svg";
 import step3 from "../assets/step3.svg";
 import about from "../assets/about.png";
 import check from "../assets/check.svg";
+import mobile from "../assets/mobile.svg";
+import google from "../assets/google.svg";
+import chat from "../assets/chatbot.svg";
+import success from "../assets/success.png";
+import machine from "../assets/machine.svg";
 import company1 from "../assets/company/cdnlogo.com_airbnb-1.png.png";
 import company2 from "../assets/company/cdnlogo.com_black-crows-1.png.png";
 import company3 from "../assets/company/cdnlogo.com_blumhouse-productions-1.png.png";
@@ -225,48 +230,71 @@ const HomePage: React.FC = () => {
       </div>
 
       <div className="">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-[80px]">
-          <Service
-            title="Mobile Marketing"
-            description="Convert your audio files into accurate, editable text with our advanced transcription service."
-            imageUrl="/images/transcription-icon.svg"
-            topFeatureImage={check}
-            topFeatureText="Seamless mobile integration for on-the-go marketing"
-            middleFeatureImage={check}
-            middleFeatureText="Seamless mobile integration for on-the-go marketing"
-            bottomFeatureImage={check}
-            bottomFeatureText="Seamless mobile integration for on-the-go marketing"
-            buttonText="Read More"
-            
-          />
-          <Service
-            title="Chatbot Integration"
-            description="Get concise summaries of your audio content, highlighting key points and main ideas."
-            imageUrl="/images/summarization-icon.svg"
-            topFeatureImage={check}
-            topFeatureText="Seamless mobile integration for on-the-go marketing"
-            middleFeatureImage={check}
-            middleFeatureText="Voice-enabled chat-bots"
-            bottomFeatureImage={check}
-            bottomFeatureText="Seamless mobile integration for on-the-go marketing"
-            buttonText="Read More"
-            
-          />
-          <Service
-            title="Machine Learning"
-            description="Automatically identify and extract important keywords and phrases from your audio content."
-            imageUrl="/images/keyword-icon.svg"
-            topFeatureImage={check}
-            topFeatureText="Seamless mobile integration for on-the-go marketing"
-            middleFeatureImage={check}
-            middleFeatureText="Seamless mobile integration for on-the-go marketing"
-            bottomFeatureImage={check}
-            bottomFeatureText="Seamless mobile integration for on-the-go marketing"
-            buttonText="Read More"
-           
-          />
+        <div className="flex flex-col items-center justify-center mt-[80px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <Service
+              title="Mobile Marketing"
+              description="Convert your audio files into accurate, editable text with our advanced transcription service."
+              imageUrl={mobile}
+              topFeatureImage={check}
+              topFeatureText="Seamless mobile integration for on-the-go marketing"
+              middleFeatureImage={check}
+              middleFeatureText="Seamless mobile integration for on-the-go marketing"
+              bottomFeatureImage={check}
+              bottomFeatureText="Seamless mobile integration for on-the-go marketing"
+              buttonText="Read More"
+            />
+            <Service
+              title="Chatbot Integration"
+              description="Get concise summaries of your audio content, highlighting key points and main ideas."
+              imageUrl={chat}
+              topFeatureImage={check}
+              topFeatureText="Seamless mobile integration for on-the-go marketing"
+              middleFeatureImage={check}
+              middleFeatureText="Voice-enabled chat-bots"
+              bottomFeatureImage={check}
+              bottomFeatureText="Seamless mobile integration for on-the-go marketing"
+              buttonText="Read More"
+            />
+            <Service
+              title="Machine Learning"
+              description="Automatically identify and extract important keywords and phrases from your audio content."
+              imageUrl={machine}
+              topFeatureImage={check}
+              topFeatureText="Seamless mobile integration for on-the-go marketing"
+              middleFeatureImage={check}
+              middleFeatureText="Seamless mobile integration for on-the-go marketing"
+              bottomFeatureImage={check}
+              bottomFeatureText="Seamless mobile integration for on-the-go marketing"
+              buttonText="Read More"
+            />
+          </div>
         </div>
+        <div className="flex flex-col md:flex-row items-center justify-between mt-16">
+          <div className="md:w-1/2 mb-8 md:mb-0" style={{ marginLeft: "10%" }}>
+            <Image src={success} alt="Success" />
+          </div>
+          <div className="md:w-1/2" style={{    marginTop: "-316px", marginRight:" 300px"}}>
+            <div className="process-divider mb-4 ">
+              <div className="process-divider__line"></div>
+              <span className="process-divider__text">Our Success</span>
+              <div className="process-divider__line"></div>
+            </div>
+            <span className="engage-title" style={{ textAlign: "left" }}>
+              Unleashing Potential Keys to <br /> Success
+            </span>
+            <span className="engage-description" style={{ textAlign: "left" }}>
+              There are many variations of passages of Lorem Ipsum available,
+              but the majority have suffered alteration in some form humor.
+            </span>
+            <div className="w-[85%] h-px bg-gray-200 my-6"></div>
+            <div className="flex items-center gap-4">
+              <Image src={google} alt="Google" width={80} height={80} />
+              <span className="google-text">Get Insights Only In Google</span>
+            </div>
+          </div>
         </div>
+      </div>
     </>
   );
 };

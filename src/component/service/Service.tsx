@@ -17,8 +17,8 @@ interface ServiceProps {
 
 export default function Service({ title, description, imageUrl, buttonText, onButtonClick, topFeatureImage, topFeatureText, middleFeatureImage, middleFeatureText, bottomFeatureImage, bottomFeatureText }: ServiceProps) {
   return (
-    <div className="flex flex-col items-center justify-center h-[542.84px] self-stretch rounded-lg bg-white shadow-[0px_12px_32px_0px_rgba(25,41,66,0.07)]">
-      <div className="mb-6">
+    <div className="flex flex-col items-center justify-between h-[542.84px] rounded-lg bg-white shadow-[0px_12px_32px_0px_rgba(25,41,66,0.07)]" style={{ width: '450px', margin:"50px", padding: "20px 0" }}>
+      <div className="mb-8">
         <Image
           src={imageUrl}
           alt={title}
@@ -32,7 +32,7 @@ export default function Service({ title, description, imageUrl, buttonText, onBu
         fontWeight: 'var(--font-weight-300, 300)',
         lineHeight: 'var(--line-height-27_73, 27.73px)',
       }}>{title}</h2>
-      <p className="text-center px-4" style={{
+      <p className="text-center px-4 mb-6" style={{
         color: 'var(--color-grey-39, #5F6168)',
         fontFamily: 'var(--font-family-Font-3, Poppins)',
         fontSize: 'var(--font-size-16, 16px)',
@@ -42,7 +42,7 @@ export default function Service({ title, description, imageUrl, buttonText, onBu
       }}>
         {description}
       </p>
-      <p className="px-4 mt-2" style={{
+      <p className="px-4 mb-4" style={{
         color: 'var(--color-blue-27, #302F5B)',
         fontFamily: 'var(--font-family-Font-3, Poppins)',
         fontSize: 'var(--font-size-18, 18px)',
@@ -53,8 +53,8 @@ export default function Service({ title, description, imageUrl, buttonText, onBu
       }}>
         Top features
       </p>
-      <div className="flex flex-col items-start">
-        <div className="flex flex-row items-center mb-2">
+      <div className="flex flex-col items-start mb-6">
+        <div className="flex flex-row items-center mb-3">
           <div className="mr-4">
             <Image
               src={topFeatureImage}
@@ -63,19 +63,18 @@ export default function Service({ title, description, imageUrl, buttonText, onBu
               height={18}
             />
           </div>
-          <p className="text-left" style={{
+          <p className="text-left ml-2" style={{
             color: 'var(--color-grey-39, #5F6168)',
             fontFamily: 'var(--font-family-Font-3, Poppins)',
-            fontSize: 'var(--font-size-14, 16px)',
+            fontSize: 'var(--font-size-14, 14px)',
             fontStyle: 'normal',
             fontWeight: 'var(--font-weight-300, 300)',
             lineHeight: 'var(--line-height-22, 22px)',
-            marginBottom: '-4px',
           }}>
             {topFeatureText}
           </p>
         </div>
-        <div className="flex flex-row items-center mb-2">
+        <div className="flex flex-row items-center mb-3">
           <div className="mr-4">
             <Image
               src={middleFeatureImage}
@@ -84,14 +83,13 @@ export default function Service({ title, description, imageUrl, buttonText, onBu
               height={18}
             />
           </div>
-          <p className="text-left" style={{
+          <p className="text-left ml-2" style={{
             color: 'var(--color-grey-39, #5F6168)',
             fontFamily: 'var(--font-family-Font-3, Poppins)',
-            fontSize: 'var(--font-size-14, 16px)',
+            fontSize: 'var(--font-size-14, 14px)',
             fontStyle: 'normal',
             fontWeight: 'var(--font-weight-300, 300)',
             lineHeight: 'var(--line-height-22, 22px)',
-            marginBottom: '-4px',
           }}>
             {middleFeatureText}
           </p>
@@ -105,42 +103,43 @@ export default function Service({ title, description, imageUrl, buttonText, onBu
               height={18}
             />
           </div>
-          <p className="text-left" style={{
+          <p className="text-left ml-2" style={{
             color: 'var(--color-grey-39, #5F6168)',
             fontFamily: 'var(--font-family-Font-3, Poppins)',
-            fontSize: 'var(--font-size-14, 16px)',
+            fontSize: 'var(--font-size-14, 14px)',
             fontStyle: 'normal',
             fontWeight: 'var(--font-weight-300, 300)',
             lineHeight: 'var(--line-height-22, 22px)',
-            marginBottom: '-4px',
           }}>
             {bottomFeatureText}
           </p>
         </div>
       </div>
-      <button 
-        className="mt-4 px-4 py-2"
-        style={{
-          borderRadius: '8px',
-          background: '#FFF',
-          boxShadow: '0px 12px 32px 0px rgba(25, 41, 66, 0.07)'
-        }}
-      >
-        Read more
-      </button>
-      {buttonText && onButtonClick && (
+      <div>
         <button 
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          onClick={onButtonClick}
+          className="px-4 py-2 mb-4"
           style={{
             borderRadius: '8px',
             background: '#FFF',
             boxShadow: '0px 12px 32px 0px rgba(25, 41, 66, 0.07)'
           }}
         >
-          {buttonText}
+          Read more
         </button>
-      )}
+        {buttonText && onButtonClick && (
+          <button 
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mt-2"
+            onClick={onButtonClick}
+            style={{
+              borderRadius: '8px',
+              background: '#FFF',
+              boxShadow: '0px 12px 32px 0px rgba(25, 41, 66, 0.07)'
+            }}
+          >
+            {buttonText}
+          </button>
+        )}
+      </div>
     </div>
   )
 }

@@ -91,9 +91,15 @@
 }
 .engage-description {
   margin: 1em 0;
-  line-height: 1.66em;
   text-align: center;
   display: block;
+  
+  color: var(--color-grey-39, #5f6168);
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-16, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-26_56, 26.56px); /* 166% */
 }
 .step-image-container {
   display: flex;
@@ -180,3 +186,13 @@
   align-items: center;
   background: var(--color-grey-97, #f7f7f7);
 }
+.google-text{
+  color: var(--color-blue-27, #302F5B);
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-24, 24px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-31_2, 31.2px); /* 130% */
+  text-transform: capitalize;
+}
+
