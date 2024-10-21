@@ -13,6 +13,13 @@ import about from "../assets/about.png";
 import check from "../assets/check.svg";
 import mobile from "../assets/mobile.svg";
 import google from "../assets/google.svg";
+import google1 from "../assets/google1.svg";
+import google2 from "../assets/google2.svg";
+import cross from "../assets/cross.svg";
+import tick from "../assets/tick.svg";
+import drive from "../assets/drive.svg";
+import drive1 from "../assets/drive1.svg";
+import drive2 from "../assets/drive2.svg";
 import chat from "../assets/chatbot.svg";
 import success from "../assets/success.png";
 import machine from "../assets/machine.svg";
@@ -23,6 +30,7 @@ import company4 from "../assets/company/cdnlogo.com_dribbble-1.png.png";
 import company5 from "../assets/company/cdnlogo.com_greastudio-1.png.png";
 import company6 from "../assets/company/cdnlogo.com_red-hat-1-1.png.png";
 import Service from "@/component/service/Service";
+import Price from "@/component/price/Price";
 
 const HomePage: React.FC = () => {
   return (
@@ -274,7 +282,10 @@ const HomePage: React.FC = () => {
           <div className="md:w-1/2 mb-8 md:mb-0" style={{ marginLeft: "10%" }}>
             <Image src={success} alt="Success" />
           </div>
-          <div className="md:w-1/2" style={{    marginTop: "-316px", marginRight:" 300px"}}>
+          <div
+            className="md:w-1/2"
+            style={{ marginTop: "-150px", marginRight: " 300px" }}
+          >
             <div className="process-divider mb-4 ">
               <div className="process-divider__line"></div>
               <span className="process-divider__text">Our Success</span>
@@ -288,11 +299,130 @@ const HomePage: React.FC = () => {
               but the majority have suffered alteration in some form humor.
             </span>
             <div className="w-[85%] h-px bg-gray-200 my-6"></div>
-            <div className="flex items-center gap-4">
-              <Image src={google} alt="Google" width={80} height={80} />
-              <span className="google-text">Get Insights Only In Google</span>
+            <div className="flex flex-row">
+              <div className="flex items-center gap-4 mb-4">
+                <Image src={google} alt="Google" width={80} height={80} />
+              </div>
+              <div className="flex flex-col items-start gap-4">
+                <span className="google-text ml-8">
+                  Get Insights Only In Google
+                </span>
+                <div className="flex flex-row items-center ml-8">
+                  <Image src={google1} alt="Google 1" width={20} height={16} />
+                  <span
+                    className=" ml-4"
+                    style={{
+                      color: "var(--color-grey-39, #5F6168)",
+                      fontFamily: "var(--font-family-Font-3, Poppins)",
+                      fontSize: "var(--font-size-16, 16px)",
+                      fontStyle: "normal",
+                      fontWeight: "var(--font-weight-300, 300)",
+                      lineHeight: "var(--line-height-28, 28px)",
+                    }}
+                  >
+                    Personalized interactions
+                  </span>
+                </div>
+              </div>
+              <div
+                className="flex flex-row items-center "
+                style={{ marginBottom: "-35px" }}
+              >
+                <Image src={google2} alt="Google 1" width={20} height={16} />
+                <span
+                  className=" ml-4"
+                  style={{
+                    color: "var(--color-grey-39, #5F6168)",
+                    fontFamily: "var(--font-family-Font-3, Poppins)",
+                    fontSize: "var(--font-size-16, 16px)",
+                    fontStyle: "normal",
+                    fontWeight: "var(--font-weight-300, 300)",
+                    lineHeight: "var(--line-height-28, 28px)",
+                  }}
+                >
+                  Scalable support
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-row mt-8">
+              <div className="flex items-center gap-4 mb-4">
+                <Image src={drive} alt="Google" width={80} height={80} />
+              </div>
+              <div className="flex flex-col items-start gap-4">
+                <span className="google-text ml-8">
+                  Get Insights Only In Google
+                </span>
+                <div className="flex flex-row items-center ml-8">
+                  <Image src={drive1} alt="Google 1" width={20} height={16} />
+                  <span
+                    className=" ml-4"
+                    style={{
+                      color: "var(--color-grey-39, #5F6168)",
+                      fontFamily: "var(--font-family-Font-3, Poppins)",
+                      fontSize: "var(--font-size-16, 16px)",
+                      fontStyle: "normal",
+                      fontWeight: "var(--font-weight-300, 300)",
+                      lineHeight: "var(--line-height-28, 28px)",
+                    }}
+                  >
+                    Automated service
+                  </span>
+                </div>
+              </div>
+              <div
+                className="flex flex-row items-center "
+                style={{ marginBottom: "-35px" }}
+              >
+                <Image src={drive2} alt="Google 1" width={20} height={16} />
+                <span
+                  className=" ml-4"
+                  style={{
+                    color: "var(--color-grey-39, #5F6168)",
+                    fontFamily: "var(--font-family-Font-3, Poppins)",
+                    fontSize: "var(--font-size-16, 16px)",
+                    fontStyle: "normal",
+                    fontWeight: "var(--font-weight-300, 300)",
+                    lineHeight: "var(--line-height-28, 28px)",
+                  }}
+                >
+                  Instant responses
+                </span>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div
+        className="bg-[#F7F7F7] mt-11"
+        style={{
+          width: "100%",
+          height: "696.58px",
+          position: "absolute",
+        }}
+      >
+        <div className="process-divider" style={{marginTop:"5%"}}>
+          <div className="process-divider__line"></div>
+          <span className="process-divider__text">Pricing</span>
+          <div className="process-divider__line"></div>
+        </div>
+        <span className="engage-title">Choose Pricing Plan</span>
+        <div className="flex flex-col md:flex-row gap-6 mt-11 items-center justify-center" >
+          <Price title="Starter" 
+          heading="19$" 
+          imageSrc={tick} 
+          text="Basic features for individuals."
+          imageSrc1={tick} text1="Basic features for individuals."
+          imageSrc2={tick} text2="Basic features for individuals."
+          imageSrc3={tick} text3="Basic features for individuals."
+           />
+          <Price title="Pro" heading="49$" imageSrc={cross} text="Advanced features for teams."
+          imageSrc1={cross} text1="Advanced features for teams."
+          imageSrc2={cross} text2="Advanced features for teams."
+          imageSrc3={cross} text3="Advanced features for teams." />
+          <Price title="Enterprise" heading="99$" imageSrc={tick} text="All features for large organizations."
+          imageSrc1={tick} text1="All features for large organizations."
+          imageSrc2={tick} text2="All features for large organizations."
+          imageSrc3={tick} text3="All features for large organizations." />
         </div>
       </div>
     </>
