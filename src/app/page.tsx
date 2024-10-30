@@ -31,12 +31,14 @@ import company5 from "../assets/company/cdnlogo.com_greastudio-1.png.png";
 import company6 from "../assets/company/cdnlogo.com_red-hat-1-1.png.png";
 import Service from "@/component/service/Service";
 import Price from "@/component/price/Price";
+import Price1 from "@/component/price/Price1";
+// import Footer from "@/component/footer/Footer";
 
 const HomePage: React.FC = () => {
   return (
     <>
       {/* Include Navbar */}
-      <Navbar />
+      <Navbar showBrand={true} showLoginButton={true}/>
       <div className="container-fluid">
         <div className="flex flex-col md:flex-row">
           <div className="hero-text md:w-1/2">
@@ -396,7 +398,7 @@ const HomePage: React.FC = () => {
         className="bg-[#F7F7F7] mt-11"
         style={{
           width: "100%",
-          height: "696.58px",
+          height: "796.58px",
           position: "absolute",
         }}
       >
@@ -415,7 +417,8 @@ const HomePage: React.FC = () => {
           imageSrc2={tick} text2="Basic features for individuals."
           imageSrc3={tick} text3="Basic features for individuals."
            />
-          <Price title="Pro" heading="49$" imageSrc={cross} text="Advanced features for teams."
+
+          <Price1 title="Pro" heading="49$" imageSrc={cross} text="Advanced features for teams."
           imageSrc1={cross} text1="Advanced features for teams."
           imageSrc2={cross} text2="Advanced features for teams."
           imageSrc3={cross} text3="Advanced features for teams." />
@@ -425,6 +428,7 @@ const HomePage: React.FC = () => {
           imageSrc3={tick} text3="All features for large organizations." />
         </div>
       </div>
+      
     </>
   );
 };

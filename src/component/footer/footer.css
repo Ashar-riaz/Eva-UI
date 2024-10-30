@@ -1,0 +1,7 @@
+.footer{
+    background: var(--color-azure-9, #0E141E);
+    display: flex;
+    width:100%;
+    flex-direction: column; 
+    align-items: center;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import "./price.css"
-import arrow_price from '@/assets/arrow-price.svg'
+import "./price1.css"
+import arrow_price from '@/assets/arrow2.svg'
 
 interface PriceProps {
   readonly title: string;
@@ -18,32 +18,32 @@ interface PriceProps {
 
 export default function Price({ title, heading, imageSrc, text ,imageSrc1,text1,imageSrc2,text2,imageSrc3,text3}: PriceProps) {
   return (
-    <div className="price-card">
-      <span className="price-title">{title}</span>
-      <div className="price-header">
-        <span className="price-heading">{heading}</span>
-        <span className="price-duration">/Per Month</span>
+    <div className="price-card1">
+      <span className="price-title1">{title}</span>
+      <div className="price-header1">
+        <span className="price-heading1">{heading}</span>
+        <span className="price-duration1">/Per Month</span>
       </div>
-      <div className="price-details"style={{marginTop:"30px"}}>
+      <div className="price-details1"style={{marginTop:"30px"}}>
         <Image src={imageSrc} alt={title} width={20} height={16} />
-        <span className="price-text">{text}</span>
+        <span className="price-text1">{text}</span>
       </div>
-      <div className="price-details ">
+      <div className="price-details1">
         <Image src={imageSrc1} alt={title} width={20} height={16} />
-        <span className="price-text">{text1}</span>
+        <span className="price-text1">{text1}</span>
       </div>
-      <div className="price-details">
+      <div className="price-details1">
         <Image src={imageSrc2} alt={title} width={20} height={16} />
-        <span className="price-text">{text2}</span>
+        <span className="price-text1">{text2}</span>
       </div>
-      <div className="price-details">
+      <div className="price-details1">
         <Image src={imageSrc3} alt={title} width={20} height={16} />
-        <span className="price-text">{text3}</span>
+        <span className="price-text1">{text3}</span>
       </div>
       <button 
         style={{
           borderRadius: "var(--radius-4, 4px)",
-          background: "#FFF",
+          background: "#3639A4",
           boxShadow: "0px 12px 32px 0px rgba(25, 41, 66, 0.07)",
           display: "flex",
           flexDirection: "column",
@@ -61,7 +61,8 @@ export default function Price({ title, heading, imageSrc, text ,imageSrc1,text1,
             borderTop: "var(--stroke-weight-0_5, 0.5px) solid #EAECEE",
             padding: "34px 125.27px",
             height: "93.5px",
-            width: "100%"
+            width: "100%",
+            color:"#FFFFFF"
           }}
         >
           <span>Get Started</span>
