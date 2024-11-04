@@ -1,0 +1,84 @@
+.Footer {
+  display: flex;
+  width: 100%;
+  padding: 111px 12.5px 0px 12.5px;
+  flex-direction: column;
+  /* align-items: center; */
+  background: var(--color-azure-9, #0e141e);
+}
+.footer-text {
+  color: #fff;
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-37, 37px);
+  font-style: normal;
+  font-weight: 300;
+  line-height: 48px; /* 129.73% */
+  text-transform: capitalize;
+  /* margin: 50px; */
+}
+
+.footer-text2 {
+  color: var(--color-red-70, #ff7364);
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-37, 37px);
+  font-style: italic;
+  font-weight: 900;
+  line-height: 48px;
+  text-decoration-line: underline;
+  text-transform: capitalize;
+}
+.email-text {
+  color: #fff;
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--line-height-21, 21px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-27_3, 27.3px); /* 130% */
+  text-transform: capitalize;
+}
+.Input-text {
+  color: var(--color-grey-39, #5f6168);
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-16, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: normal;
+  border-bottom: var(--stroke-weight-1, 1px) solid rgba(82, 95, 129, 0.1);
+  display: flex;
+  width: 300.36px;
+  height: 60px;
+  padding: 31px 50px var(--item-spacing-5, 5px) 0px;
+  justify-content: center;
+  align-items: flex-start;
+  background: var(--color-azure-9, #0e141e);
+}
+
+.Input-text::placeholder {
+  color: var(--color-grey-39, #5f6168);
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-16, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: normal;
+}
+.Input-text:hover,  /* Apply on hover */
+.Input-text:focus {
+  /* Apply when the input is focused */
+  border-bottom: var(--stroke-weight-1, 1px) solid var(--color-red-70, #ff7364); /* Change border color to red on focus */
+  outline: none; /* Remove the default outline */
+}
+.Login-button {
+  display: flex;
+  border-radius: var(--radius-4, 4px);
+  background: #fff;
+  width: 30px;
+}
+.heading {
+  color: #fff;
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-12, 12px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-21, 21px); /* 175% */
+  margin-top: 5px;
+}

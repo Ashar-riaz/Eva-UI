@@ -1,7 +1,11 @@
-.footer{
-    background: var(--color-azure-9, #0E141E);
-    display: flex;
-    width:100%;
-    flex-direction: column; 
-    align-items: center;
+.main-footer {
+  border-bottom: var(--stroke-weight-1, 1px) solid #1e222c;
+  display: flex;
+  height: 343.3px;
+  padding-bottom: 81px;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  background: var(--color-azure-9, #0e141e);
+
 }
