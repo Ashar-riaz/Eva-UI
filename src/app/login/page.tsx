@@ -1,10 +1,27 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react';
 import Navbar from "@/component/Navbar/Nav";
 import Image from 'next/image';
 import logo  from '@/assets/logo.png.png'
 import './login.css'
 import Link from 'next/link';
-export default function page() {
+
+export default function Page() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    const response = await fetch('http://127.0.0.1:8000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <>
         <Navbar showBrand={false} showLoginButton={false}/>
@@ -15,17 +32,27 @@ export default function page() {
             </div>
             <div className="Input">
                 <span className="Input-text">Email address</span>
-                <input type="email" className="w-[454.17px] h-[52.28px] flex-shrink-0 rounded border border-[#EAECEE] bg-white mt-2"  />
+                <input 
+                  type="email" 
+                  className="w-[454.17px] h-[52.28px] flex-shrink-0 rounded border border-[#EAECEE] bg-white mt-2"  
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
             </div>
             <div className="mt-[-54px]">
                 <span className="Input-text">Password *</span>
-                <input type="email" className="w-[454.17px] h-[52.28px] flex-shrink-0 rounded border border-[#EAECEE] bg-white mt-2"  />
+                <input 
+                  type="password"
+                  className="w-[454.17px] h-[52.28px] flex-shrink-0 rounded border border-[#EAECEE] bg-white mt-2"  
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
             <div className="text-right ml-[320px] mt-[-54px]">
                 <Link href="/forgot-password" className="Forgot">Forgot Password?</Link>
             </div>
             <div className="mt-[-20px]">
-                <button className="Login-button"><span className='btn-text'>Login</span></button>
+                <button className="Login-button" onClick={handleLogin}><span className='btn-text'>Login</span></button>
             </div>
             <div className="mt-[-30px] flex flex-row">
                 <span className="Input-text">Don&apos;t have an account yet?</span>

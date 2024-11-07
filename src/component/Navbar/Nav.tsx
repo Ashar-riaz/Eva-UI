@@ -6,8 +6,6 @@ import Image from 'next/image';
 
 export default function Nav({ showBrand = true, showLoginButton = true }) {
     return (
-        <>
-        
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
                     <div className="d-flex align-items-center">
@@ -40,6 +38,6 @@ export default function Nav({ showBrand = true, showLoginButton = true }) {
                     </div>
                 </div>
             </nav>
-        </>
+        
     );
 }
