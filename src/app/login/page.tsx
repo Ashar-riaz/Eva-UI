@@ -1,66 +1,141 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/component/Navbar/Nav";
-import Image from 'next/image';
-import logo  from '@/assets/logo.png.png'
-import './login.css'
-import Link from 'next/link';
+import axios from "axios";
 
-export default function Page() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function Dashboard() {
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [responseText, setResponseText] = useState<string | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
-    const response = await fetch('http://127.0.0.1:8000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    console.log(data);
+  useEffect(() => {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      setError("Your browser does not support audio recording.");
+    }
+  }, []);
+
+  const startRecording = async () => {
+    setError(null);
+    setResponseText(null);
+    setAudioUrl(null);
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+
+      recorder.ondataavailable = (e) => {
+        setAudioChunks((prev) => [...prev, e.data]);
+      };
+
+      recorder.onstop = () => {
+        stream.getTracks().forEach((track) => track.stop());
+      };
+
+      setMediaRecorder(recorder);
+      setAudioChunks([]); // Clear previous recordings
+      recorder.start();
+      setIsRecording(true);
+    } catch (err) {
+      setError("Failed to access your microphone.");
+      console.error(err);
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+      setIsRecording(false);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (audioChunks.length === 0) {
+      setError("No audio recorded.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+      const formData = new FormData();
+      formData.append("audio_file", audioBlob);
+
+      const response = await axios.post("http://0.0.0.0:8000/process_voice", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      // Display responses
+      setResponseText(response.data.text);
+
+      const base64Audio = response.data.base64_audio;
+      const decodedAudio = `data:audio/wav;base64,${base64Audio}`;
+      setAudioUrl(decodedAudio);
+    } catch (err) {
+      setError("An error occurred while processing the audio.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-        <Navbar showBrand={false} showLoginButton={false}/>
-      <div className="bg-white">
-        <div className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[82.87px] mx-auto mt-4">
-            <div className="">
-            <Image src={logo} alt="Logo" />
-            </div>
-            <div className="Input">
-                <span className="Input-text">Email address</span>
-                <input 
-                  type="email" 
-                  className="w-[454.17px] h-[52.28px] flex-shrink-0 rounded border border-[#EAECEE] bg-white mt-2"  
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
-            <div className="mt-[-54px]">
-                <span className="Input-text">Password *</span>
-                <input 
-                  type="password"
-                  className="w-[454.17px] h-[52.28px] flex-shrink-0 rounded border border-[#EAECEE] bg-white mt-2"  
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-            <div className="text-right ml-[320px] mt-[-54px]">
-                <Link href="/forgot-password" className="Forgot">Forgot Password?</Link>
-            </div>
-            <div className="mt-[-20px]">
-                <button className="Login-button" onClick={handleLogin}><span className='btn-text'>Login</span></button>
-            </div>
-            <div className="mt-[-30px] flex flex-row">
-                <span className="Input-text">Don&apos;t have an account yet?</span>
-                <div className="ml-[-35px]">
-                <Link href="/signup" className="signup-text">Sign up</Link></div>
-            </div>
+      <Navbar showBrand={true} showLoginButton={false} />
+      <div className="p-8">
+        <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+
+        {/* Record Controls */}
+        <div className="mb-4">
+          <button
+            onClick={isRecording ? stopRecording : startRecording}
+            className={`px-6 py-2 text-white rounded ${
+              isRecording ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"
+            }`}
+          >
+            {isRecording ? "Stop Recording" : "Start Recording"}
+          </button>
         </div>
+
+        {/* Submit Button */}
+        <div>
+          <button
+            onClick={handleSubmit}
+            disabled={loading || audioChunks.length === 0}
+            className={`px-6 py-2 text-white rounded ${
+              loading || audioChunks.length === 0
+                ? "bg-gray-400"
+                : "bg-green-500 hover:bg-green-600"
+            }`}
+          >
+            {loading ? "Processing..." : "Submit"}
+          </button>
+        </div>
+
+        {/* Display Error */}
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+
+        {/* Display Text Response */}
+        {responseText && (
+          <div className="mt-6">
+            <h2 className="text-xl font-semibold">Text Response:</h2>
+            <p className="text-gray-700">{responseText}</p>
+          </div>
+        )}
+
+        {/* Display Audio Response */}
+        {audioUrl && (
+          <div className="mt-6">
+            <h2 className="text-xl font-semibold">Audio Response:</h2>
+            <audio controls src={audioUrl} className="mt-2"></audio>
+          </div>
+        )}
       </div>
     </>
-  )
+  );
 }
