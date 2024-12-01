@@ -60,7 +60,7 @@ const RealTimeVoiceProcessor = () => {
       // Update chat history with the new message
       setChatHistory((prevHistory) => [
         ...prevHistory,
-        { user: "User", message: "Sent voice query" },
+        { user: "User", message: data.User },
         { user: "AI", message: data.llm_response },
       ]);
 
