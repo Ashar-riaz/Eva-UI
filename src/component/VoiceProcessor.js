@@ -41,37 +41,41 @@ const RealTimeVoiceProcessor = () => {
 
   const processVoice = async (audioBlob) => {
     setIsProcessing(true);
-
+  
     const formData = new FormData();
     formData.append("audio_file", audioBlob);
-
+  
+    const start = performance.now(); // Log start time
+  
     try {
       const response = await fetch("http://localhost:8000/process_voice", {
         method: "POST",
         body: formData,
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to process voice");
       }
-
+  
       const data = await response.json();
-
-      // Update chat history with the new message
+  
       setChatHistory((prevHistory) => [
         ...prevHistory,
         { user: "User", message: data.User },
         { user: "AI", message: data.llm_response },
       ]);
-
+  
       playAudio(data.audio_file);
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while processing the voice.");
     } finally {
       setIsProcessing(false);
+      const end = performance.now(); // Log end time
+      console.log(`Response time: ${end - start}ms`);
     }
   };
+  
 
   const playAudio = (audioBase64) => {
     const audioBlob = new Blob([Uint8Array.from(atob(audioBase64), (c) => c.charCodeAt(0))], {

@@ -159,9 +159,6 @@
   margin-top: 2px; /* Add some space between the description and subdescription */
 }
 
-.step-image-circle {
-  position: relative;
-}
 .step-number {
   border-radius: 19px;
   background: var(--color-blue-43, #3639a4);

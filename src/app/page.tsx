@@ -11,7 +11,6 @@ import step2 from "../assets/step2.svg";
 import step3 from "../assets/step3.svg";
 import about from "../assets/about.png";
 import check from "../assets/check.svg";
-import mobile from "../assets/mobile.svg";
 import google from "../assets/google.svg";
 import google1 from "../assets/google1.svg";
 import google2 from "../assets/google2.svg";
@@ -22,13 +21,6 @@ import drive1 from "../assets/drive1.svg";
 import drive2 from "../assets/drive2.svg";
 import chat from "../assets/chatbot.svg";
 import success from "../assets/success.png";
-import machine from "../assets/machine.svg";
-import company1 from "../assets/company/cdnlogo.com_airbnb-1.png.png";
-import company2 from "../assets/company/cdnlogo.com_black-crows-1.png.png";
-import company3 from "../assets/company/cdnlogo.com_blumhouse-productions-1.png.png";
-import company4 from "../assets/company/cdnlogo.com_dribbble-1.png.png";
-import company5 from "../assets/company/cdnlogo.com_greastudio-1.png.png";
-import company6 from "../assets/company/cdnlogo.com_red-hat-1-1.png.png";
 import Service from "@/component/service/Service";
 import Price from "@/component/price/Price";
 import Price1 from "@/component/price/Price1";
@@ -36,6 +28,7 @@ import Contact from "@/component/contact/Contact";
 import Footer from "@/component/footer/Footer";
 
 const HomePage: React.FC = () => {
+  
   return (
     <>
       {/* Include Navbar */}
@@ -44,8 +37,8 @@ const HomePage: React.FC = () => {
         <div className="flex flex-col md:flex-row">
           <div className="hero-text md:w-1/2">
             <div className="second-brain-container">
-              <span className="second-brain-title">Your Second</span>
-              <span className="second-brain-title">Brain</span>
+              <span className="second-brain-title">Digital</span>
+              <span className="second-brain-title">Human</span>
             </div>
             <p className="hero-description">
               Unlock the power of your mind with a digital repository for your
@@ -57,7 +50,8 @@ const HomePage: React.FC = () => {
               <br />
               and professional life.
             </p>
-            <button className="btn custom-btn d-flex align-items-center mt-4">
+            <button className="btn custom-btn d-flex align-items-center mt-4" >
+              
               <span>GET STARTED</span>
               <Image
                 src={arrow}
@@ -86,17 +80,7 @@ const HomePage: React.FC = () => {
           style={{ width: "100% !important" }}
         ></Image>
       </div>
-      <div className="flex flex-col items-center mt-[2%] box">
-        <span className="hero-text2">Empowering Product Teams to Excel</span>
-        <div className="flex flex-wrap justify-center gap-[120px] mt-1 mb-5">
-          <Image src={company1} alt="image" />
-          <Image src={company2} alt="image" />
-          <Image src={company3} alt="image" />
-          <Image src={company4} alt="image" />
-          <Image src={company5} alt="image" />
-          <Image src={company6} alt="image" />
-        </div>
-      </div>
+
       <div className="mt-[5%] mb-[5%]">
         <div className="process-divider">
           <div className="process-divider__line"></div>
@@ -242,19 +226,7 @@ const HomePage: React.FC = () => {
 
       <div className="">
         <div className="flex flex-col items-center justify-center mt-[80px]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <Service
-              title="Mobile Marketing"
-              description="Convert your audio files into accurate, editable text with our advanced transcription service."
-              imageUrl={mobile}
-              topFeatureImage={check}
-              topFeatureText="Seamless mobile integration for on-the-go marketing"
-              middleFeatureImage={check}
-              middleFeatureText="Seamless mobile integration for on-the-go marketing"
-              bottomFeatureImage={check}
-              bottomFeatureText="Seamless mobile integration for on-the-go marketing"
-              buttonText="Read More"
-            />
+          <div className="grid-cols-1 md:grid-cols-3 gap-12 flex">
             <Service
               title="Chatbot Integration"
               description="Get concise summaries of your audio content, highlighting key points and main ideas."
@@ -263,18 +235,6 @@ const HomePage: React.FC = () => {
               topFeatureText="Seamless mobile integration for on-the-go marketing"
               middleFeatureImage={check}
               middleFeatureText="Voice-enabled chat-bots"
-              bottomFeatureImage={check}
-              bottomFeatureText="Seamless mobile integration for on-the-go marketing"
-              buttonText="Read More"
-            />
-            <Service
-              title="Machine Learning"
-              description="Automatically identify and extract important keywords and phrases from your audio content."
-              imageUrl={machine}
-              topFeatureImage={check}
-              topFeatureText="Seamless mobile integration for on-the-go marketing"
-              middleFeatureImage={check}
-              middleFeatureText="Seamless mobile integration for on-the-go marketing"
               bottomFeatureImage={check}
               bottomFeatureText="Seamless mobile integration for on-the-go marketing"
               buttonText="Read More"
@@ -455,6 +415,7 @@ const HomePage: React.FC = () => {
           <hr style={{ borderColor: "#5F6168" }} />
         </div>
         <Footer/>
+        
       </div>
     </>
   );
