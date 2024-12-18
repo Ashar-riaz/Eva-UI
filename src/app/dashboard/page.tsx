@@ -1,13 +1,15 @@
 "use client";
-import Navbar from "@/component/Navbar/Nav";
-import VoiceProcessor from "@/component/VoiceProcessor"
+
+import Avatar from "@/component/Voice/Avatar"
 export default function Dashboard() {
  
 
   return (
     <>
-      <Navbar showBrand={true} showLoginButton={false} />
-      <VoiceProcessor />
+    
+      {/* <div className="bg-[#181818] h-screen"> */}
+      <Avatar/>
+      {/* </div> */}
     </>
   );
 }

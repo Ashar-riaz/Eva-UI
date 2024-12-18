@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
         <div className="" style={{ marginTop: "10px" }}>
           <span className="footer-arrow">{"> "}</span>
-          <Link href="/" className="footer-text" style={{ marginLeft: "15px" }}>
+          <Link href="/About_us" className="footer-text" style={{ marginLeft: "15px" }}>
             About us
           </Link>
         </div>
@@ -55,7 +55,7 @@ export default function Footer() {
         </span>
         <div className="" style={{ marginTop: "30px" }}>
           <span className="footer-arrow">{"> "}</span>
-          <Link href="/" className="footer-text" style={{ marginLeft: "15px" }}>
+          <Link href="/Contact" className="footer-text" style={{ marginLeft: "15px" }}>
             Contact us
           </Link>
         </div>

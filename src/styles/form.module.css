@@ -1,0 +1,13 @@
+/* styles/form.module.css */
+.form-input {
+    @apply border border-gray-300 rounded-md px-4 py-2 focus:ring focus:ring-blue-300 outline-none;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-600 mb-1;
+  }
+  
+  .checkbox {
+    @apply w-4 h-4 mr-2;
+  }
+  

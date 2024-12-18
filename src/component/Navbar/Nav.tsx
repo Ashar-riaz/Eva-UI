@@ -21,7 +21,7 @@ export default function Nav({ showBrand = true, showLoginButton = true }) {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/catalog">About us</a>
+                                <a className="nav-link" href="/About_us">About us</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/Contact">Contact</a>

@@ -1,6 +1,7 @@
 // src/app/page.tsx
 import React from "react";
 import Navbar from "../component/Navbar/Nav";
+import About from "@/component/Value/Value";
 import "./landing.css";
 import Image from "next/image";
 import arrow from "../assets/arrow.svg";
@@ -24,7 +25,7 @@ import success from "../assets/success.png";
 import Service from "@/component/service/Service";
 import Price from "@/component/price/Price";
 import Price1 from "@/component/price/Price1";
-import Contact from "@/component/contact/Contact";
+import Contact from "@/component/contact-section/ContactHome";
 import Footer from "@/component/footer/Footer";
 
 const HomePage: React.FC = () => {
@@ -94,14 +95,14 @@ const HomePage: React.FC = () => {
           <br />
           alteration in some form.
         </span>
-        <div className="flex flex-col md:flex-row relative mt-[4%] justify-center gap-10">
+        <div className="flex flex-col md:flex-row relative mt-[4%] justify-center gap-10" style={{marginLeft:"253px"}}>
           <div className="step1 mb-8 md:mb-0 md:mr-4 md:mt-[-30px]">
             <div className="step-image-container">
               <div className="step-image-circle">
                 <div className="step-image">
                   <Image src={step1} alt="Step 1" className="img" />
                 </div>
-                <div className="step-number">01</div>
+                <div className="step-number step1">01</div>
               </div>
             </div>
             <p className="step-description">Input Processing</p>
@@ -117,7 +118,7 @@ const HomePage: React.FC = () => {
                 <div className="step-image">
                   <Image src={step2} alt="Step 2" className="img" />
                 </div>
-                <div className="step-number">02</div>
+                <div className="step-number step2">02</div>
               </div>
             </div>
             <p className="step-description">Holistic perception</p>
@@ -133,7 +134,7 @@ const HomePage: React.FC = () => {
                 <div className="step-image">
                   <Image src={step3} alt="Step 3" className="img" />
                 </div>
-                <div className="step-number">03</div>
+                <div className="step-number step3">03</div>
               </div>
             </div>
             <p className="step-description">Generate Response</p>
@@ -149,7 +150,7 @@ const HomePage: React.FC = () => {
                 <div className="step-image">
                   <Image src={step2} alt="Step 4" className="img" />
                 </div>
-                <div className="step-number">04</div>
+                <div className="step-number step4">04</div>
               </div>
             </div>
             <p className="step-description">Output Delivery</p>
@@ -178,34 +179,13 @@ const HomePage: React.FC = () => {
         <div className="flex flex-col md:flex-row">
           <div
             className="flex-1 min-h-[273px] p-[30px] items-start self-stretch bg-white shadow-[0px_12px_32px_0px_rgba(25,41,66,0.07)]"
-            style={{ minHeight: "273px" }}
+            style={{     height: "307px",
+              width: "570px",
+              marginTop: "90px" }}
           >
             <div className="flex h-full">
-              <div className="flex flex-col mr-4">
-                <span className="mb-2 px-4 py-2 cursor-pointer text-blue-500 font-bold">
-                  Our Values
-                </span>
-                <span className="mb-2 px-4 py-2 cursor-pointer text-gray-700">
-                  Our Vision
-                </span>
-                <span className="px-4 py-2 cursor-pointer text-gray-700">
-                  Our Mission
-                </span>
-              </div>
-              <div className="flex-grow">
-                <div id="content-a" className="h-full">
-                  <p>
-                    This is the default content for A. It shows when the page
-                    loads or when A is clicked.
-                  </p>
-                </div>
-                <div id="content-b" className="h-full hidden">
-                  <p>This is the content for B. It shows when B is clicked.</p>
-                </div>
-                <div id="content-c" className="h-full hidden">
-                  <p>This is the content for C. It shows when C is clicked.</p>
-                </div>
-              </div>
+              
+              <About/>
             </div>
           </div>
           <div className="about-image-container mt-4 md:mt-0 md:ml-4">

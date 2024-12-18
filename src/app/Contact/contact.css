@@ -1,0 +1,95 @@
+.contact-divider {
+  display: flex;
+  align-items: center;
+}
+
+.contact-divider__line {
+  width: 16px;
+  height: 1px;
+  background: var(--color-red-70, #ff7364);
+  margin-top: -4px;
+}
+
+.contact-divider__text {
+  color: var(--color-red-70, #ff7364);
+  margin: 0 8px;
+  font-size: var(--font-size-normal);
+  line-height: 22px;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.contact-title {
+  color: var(--color-blue-27, #302f5b);
+  text-align: center;
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-44, 44px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-57_2, 57.2px);
+  text-transform: capitalize;
+  display: block;
+  text-align: justify;
+}
+.contact-description {
+  margin: 1em 0;
+  text-align: center;
+  display: block;
+  color: var(--color-grey-39, #5f6168);
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-16, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-26_56, 26.56px); /* 166% */
+  text-align: justify;
+}
+.contact_text {
+  color: #5f6168;
+
+  font-family: var(--font-family-Font-3, Poppins);
+  font-size: var(--font-size-16, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-300, 300);
+  line-height: var(--line-height-28, 28px); /* 175% */
+  margin-left: 20px;
+}
+.talk-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  color: #302f5b;
+  font-family: Poppins, sans-serif;
+  font-size: 21.2px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 27.62px; /* 130.283% */
+  text-transform: capitalize;
+  margin-top: 30px;
+}
+.details {
+  color: #5f6168;
+  font-family: Poppins, sans-serif;
+  font-size: 15.9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26.45px; /* 166.352% */
+  margin-top: 18px
+}
+.mail {
+  color: #ff7364;
+  font-family: Poppins, sans-serif;
+  font-size: 15.9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26.45px;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+  margin-top: 18px;
+  margin-left: 5px;
+}

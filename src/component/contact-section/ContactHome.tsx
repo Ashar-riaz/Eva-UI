@@ -1,5 +1,5 @@
 import React from "react";
-import "./contact.css";
+import "./contact_section.css";
 import Image from "next/image";
 import Snake from "@/assets/Snake.png";
 import chat from "@/assets/chat.png";
