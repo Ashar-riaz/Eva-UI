@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const Avatar = () => {
   const [recording, setRecording] = useState(false);
@@ -118,7 +119,16 @@ const Avatar = () => {
         justifyContent: "flex-start",
       }}
     >
-      <video
+      {avatarResponse && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: "100px",
+          }}
+        >
+     <video
             src={avatarResponse}
             autoPlay
             onLoadedData={handleVideoLoaded}
@@ -130,63 +140,62 @@ const Avatar = () => {
             }}
             controls={false} // No controls
           />
-      <h1 style={{ color: "#FFD700", marginTop: "50px" }}>Real-Time Voice Processor</h1>
-      {!recording && (
-        <button
-          onClick={startRecording}
-          style={{
-            color: "white",
-            backgroundColor: "#444",
-            border: "1px solid #FFD700",
-            padding: "10px 20px",
-            marginTop: "20px",
-            borderRadius: "5px",
-          }}
-        >
-          Start Recording
-        </button>
-      )}
-      {recording && (
-        <button
-          onClick={stopRecording}
-          style={{
-            color: "white",
-            backgroundColor: "#444",
-            border: "1px solid #FFD700",
-            padding: "10px 20px",
-            marginTop: "20px",
-            borderRadius: "5px",
-          }}
-        >
-          Stop Recording
-        </button>
+          
+        </div>
       )}
       {isProcessing && <p style={{ color: "#FFD700" }}>Processing...</p>}
-      <div style={{ width: "100%", marginTop: "50px" }}>
-        <h2 style={{ color: "#FFD700", textAlign: "center" }}>Chat History</h2>
-        <ul style={{ color: "#FFF", listStyleType: "none", padding: 0 }}>
+      <div style={{ width: "100%", marginTop: "50px", textAlign: "center" }}>
+      <h2 style={{ color: "#FFD700" }}>Chat History</h2>
+      <div
+        style={{
+          width: "446px", // Set width
+          maxHeight: "300px", // Fixed height for the chat history
+          overflowY: "auto", // Enable vertical scrolling
+          backgroundColor: "#2E2E2E", // Background for better contrast
+          padding: "10px",
+          borderRadius: "8px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional styling for aesthetics
+          margin: "0 auto", // Center horizontally
+          minHeight:"200px"
+        }}
+      >
+        <ul style={{ color: "#FFF", listStyleType: "none", padding: 0, margin: 0 }}>
           {chatHistory.map((chat, index) => (
-            <li key={index} style={{ marginBottom: "10px", textAlign: "center" }}>
+            <li key={index} style={{ marginBottom: "10px" }}>
               <strong style={{ color: "#FFD700" }}>{chat.user}:</strong> {chat.message}
             </li>
           ))}
         </ul>
       </div>
-      {avatarResponse && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "100px",
-          }}
-        >
-     
-          
-        </div>
+    </div>
+      <div
+      style={{
+        position: "fixed",
+        bottom: "20px", // Distance from the bottom
+        left: "50%", // Center horizontally
+        transform: "translateX(-50%)", // Adjust for center alignment
+        zIndex: 1000, // Ensure it appears above other elements
+      }}
+    >
+      {!recording && (
+        <DotLottieReact
+          src="https://lottie.host/2a5275e0-25e5-4c2f-bbba-13fe7b914513/j1xhpCV6T4.lottie"
+          onClick={startRecording}
+          style={{ width: "100px", height: "100px" }}
+        />
+      )}
+      {recording && (
+        <DotLottieReact
+          src="https://lottie.host/2a5275e0-25e5-4c2f-bbba-13fe7b914513/j1xhpCV6T4.lottie"
+          loop
+          autoplay
+          style={{ width: "100px", height: "100px" }}
+          onClick={stopRecording}
+        />
       )}
     </div>
-  );
+  </div>
+);
 };
 
 export default Avatar;
