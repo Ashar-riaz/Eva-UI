@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Image from "next/image";
+import gif from "@/assets/Dashboard/preview.gif"
 const Avatar = () => {
   const [recording, setRecording] = useState(false);
   const [chatHistory, setChatHistory] = useState([]); // Maintain chat history
   const [isProcessing, setIsProcessing] = useState(false); // Loading indicator
   const [avatarResponse, setAvatarResponse] = useState(null); // To store video response
-  const [videoReady, setVideoReady] = useState(false); // Video readiness state
+  const [showGif, setShowGif] = useState(true); // Control GIF visibility
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
@@ -50,8 +51,6 @@ const Avatar = () => {
     const formData = new FormData();
     formData.append("audio_file", audioBlob);
 
-    const start = performance.now(); // Log start time
-
     try {
       const response = await fetch("http://localhost:8000/process_voice", {
         method: "POST",
@@ -71,40 +70,13 @@ const Avatar = () => {
       ]);
 
       setAvatarResponse(data.avatar_response); // Store avatar video URL
-      setVideoReady(false); // Reset readiness state
-      if (data.audio_file) {
-        playAudio(data.audio_file);
-      }
+      setShowGif(false); // Hide GIF and show video
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while processing the voice.");
     } finally {
       setIsProcessing(false);
-      const end = performance.now(); // Log end time
-      console.log(`Response time: ${end - start}ms`);
     }
-  };
-
-  const playAudio = (audioBase64) => {
-    try {
-      const audioBlob = new Blob(
-        [Uint8Array.from(atob(audioBase64.replace(/\s/g, "")), (c) => c.charCodeAt(0))],
-        {
-          type: "audio/mpeg",
-        }
-      );
-
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-    } catch (error) {
-      console.error("Error in playAudio:", error);
-      alert("Invalid audio file received.");
-    }
-  };
-
-  const handleVideoLoaded = () => {
-    setVideoReady(true); // Mark video as ready to play
   };
 
   return (
@@ -119,83 +91,95 @@ const Avatar = () => {
         justifyContent: "flex-start",
       }}
     >
-      {avatarResponse && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "100px",
-          }}
-        >
-     <video
-            src={avatarResponse}
-            autoPlay
-            onLoadedData={handleVideoLoaded}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "100px",
+        }}
+      >
+        {showGif ? (
+          <Image
+            src={gif}
+            alt="Processing Animation"
             style={{
               width: "300px",
               height: "auto",
               marginTop: "20px",
-              display: videoReady ? "block" : "none",
             }}
-            controls={false} // No controls
           />
-          
-        </div>
-      )}
+        ) : (
+          avatarResponse && (
+            <video
+              src={avatarResponse}
+              autoPlay
+              onEnded={() => setShowGif(true)} // Show GIF again after video ends
+              style={{
+                width: "300px",
+                height: "auto",
+                marginTop: "20px",
+              }}
+            />
+          )
+        )}
+      </div>
+
       {isProcessing && <p style={{ color: "#FFD700" }}>Processing...</p>}
+
       <div style={{ width: "100%", marginTop: "50px", textAlign: "center" }}>
-      <h2 style={{ color: "#FFD700" }}>Chat History</h2>
+        <h2 style={{ color: "#FFD700" }}>Chat History</h2>
+        <div
+          style={{
+            width: "446px", // Set width
+            maxHeight: "300px", // Fixed height for the chat history
+            overflowY: "auto", // Enable vertical scrolling
+            backgroundColor: "#2E2E2E", // Background for better contrast
+            padding: "10px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional styling for aesthetics
+            margin: "0 auto", // Center horizontally
+            minHeight: "200px",
+          }}
+        >
+          <ul style={{ color: "#FFF", listStyleType: "none", padding: 0, margin: 0 }}>
+            {chatHistory.map((chat, index) => (
+              <li key={index} style={{ marginBottom: "10px" }}>
+                <strong style={{ color: "#FFD700" }}>{chat.user}:</strong> {chat.message}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
       <div
         style={{
-          width: "446px", // Set width
-          maxHeight: "300px", // Fixed height for the chat history
-          overflowY: "auto", // Enable vertical scrolling
-          backgroundColor: "#2E2E2E", // Background for better contrast
-          padding: "10px",
-          borderRadius: "8px",
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optional styling for aesthetics
-          margin: "0 auto", // Center horizontally
-          minHeight:"200px"
+          position: "fixed",
+          bottom: "20px", // Distance from the bottom
+          left: "50%", // Center horizontally
+          transform: "translateX(-50%)", // Adjust for center alignment
+          zIndex: 1000, // Ensure it appears above other elements
         }}
       >
-        <ul style={{ color: "#FFF", listStyleType: "none", padding: 0, margin: 0 }}>
-          {chatHistory.map((chat, index) => (
-            <li key={index} style={{ marginBottom: "10px" }}>
-              <strong style={{ color: "#FFD700" }}>{chat.user}:</strong> {chat.message}
-            </li>
-          ))}
-        </ul>
+        {!recording && (
+          <DotLottieReact
+            src="https://lottie.host/2a5275e0-25e5-4c2f-bbba-13fe7b914513/j1xhpCV6T4.lottie"
+            onClick={startRecording}
+            style={{ width: "100px", height: "100px" }}
+          />
+        )}
+        {recording && (
+          <DotLottieReact
+            src="https://lottie.host/2a5275e0-25e5-4c2f-bbba-13fe7b914513/j1xhpCV6T4.lottie"
+            loop
+            autoplay
+            style={{ width: "100px", height: "100px" }}
+            onClick={stopRecording}
+          />
+        )}
       </div>
     </div>
-      <div
-      style={{
-        position: "fixed",
-        bottom: "20px", // Distance from the bottom
-        left: "50%", // Center horizontally
-        transform: "translateX(-50%)", // Adjust for center alignment
-        zIndex: 1000, // Ensure it appears above other elements
-      }}
-    >
-      {!recording && (
-        <DotLottieReact
-          src="https://lottie.host/2a5275e0-25e5-4c2f-bbba-13fe7b914513/j1xhpCV6T4.lottie"
-          onClick={startRecording}
-          style={{ width: "100px", height: "100px" }}
-        />
-      )}
-      {recording && (
-        <DotLottieReact
-          src="https://lottie.host/2a5275e0-25e5-4c2f-bbba-13fe7b914513/j1xhpCV6T4.lottie"
-          loop
-          autoplay
-          style={{ width: "100px", height: "100px" }}
-          onClick={stopRecording}
-        />
-      )}
-    </div>
-  </div>
-);
+  );
 };
 
 export default Avatar;
