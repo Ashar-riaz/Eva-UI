@@ -66,7 +66,7 @@ export default function Page() {
               onChange={(e) => setName(e.target.value)}
               onFocus={() => handleFocus('name')}
               onBlur={() => handleBlur('name')}
-              className={`w-[454.17px] h-[52.28px] p-3 flex-shrink-0 rounded border ${isFocused.name ? 'border-red-500' : 'border-[#EAECEE]'} bg-white mt-2 outline-none border-1`}
+              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
             />
           </div>
           <div className="mt-[-54px]">
@@ -77,7 +77,7 @@ export default function Page() {
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => handleFocus('email')}
               onBlur={() => handleBlur('email')}
-              className={`w-[454.17px] h-[52.28px] p-3 flex-shrink-0 rounded border ${isFocused.email ? 'border-red-500' : 'border-[#EAECEE]'} bg-white mt-2 outline-none border-1`}
+              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
             />
           </div>
           <div className="mt-[-54px] relative">
@@ -88,12 +88,12 @@ export default function Page() {
               onChange={(e) => setPassword(e.target.value)}
               onFocus={() => handleFocus('password')}
               onBlur={() => handleBlur('password')}
-              className={`w-[454.17px] h-[52.28px] p-3 flex-shrink-0 rounded border ${isFocused.password ? 'border-red-500' : 'border-[#EAECEE]'} bg-white mt-2 outline-none border-1`}
+              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[45px] text-gray-500"
+              className="absolute right-3 top-[40px] text-gray-500"
             >
               {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
             </button>
@@ -106,12 +106,12 @@ export default function Page() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               onFocus={() => handleFocus('confirmPassword')}
               onBlur={() => handleBlur('confirmPassword')}
-              className={`w-[454.17px] h-[52.28px] p-3 flex-shrink-0 rounded border ${isFocused.confirmPassword ? 'border-red-500' : 'border-[#EAECEE]'} bg-white mt-2 outline-none border-1`}
+              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[45px] text-gray-500"
+              className="absolute right-3 top-[40px] text-gray-500"
             >
               {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
             </button>

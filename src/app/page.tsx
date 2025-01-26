@@ -1,5 +1,6 @@
 // src/app/page.tsx
 import React from "react";
+
 import Navbar from "../component/Navbar/Nav";
 import About from "@/component/Value/Value";
 import "./landing.css";
@@ -53,7 +54,7 @@ const HomePage: React.FC = () => {
             </p>
             <button className="btn custom-btn d-flex align-items-center mt-4" >
               
-              <span>GET STARTED</span>
+              GET STARTED
               <Image
                 src={arrow}
                 alt="Arrow icon"

@@ -1,11 +1,16 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Navbar from "@/component/Navbar/Nav";
 import Image from "next/image";
 import logo from "@/assets/logo.png.png";
-import "./login.css";
+import "./admin_login.css";
 import Link from "next/link";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
-export default function page() {
+export default function Page() {
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <>
       <Navbar showBrand={false} showLoginButton={false} />
@@ -25,13 +30,26 @@ export default function page() {
             />
           </div>
 
-          {/* Password Field */}
-          <div className="mt-[-54px]">
+          {/* Password Field with Show Password */}
+          <div className="mt-[-54px] relative">
             <span className="Input-text">Password *</span>
             <input
-              type="password" /* Changed to password type */
-              className="input-field" /* Applied updated styles */
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="input-field"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-[40px] text-gray-500"
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
           </div>
 
           {/* Forgot Password Link */}
@@ -46,16 +64,6 @@ export default function page() {
             <button className="Login-button">
               <span className="btn-text">Login</span>
             </button>
-          </div>
-
-          {/* Signup Section */}
-          <div className="mt-[-30px] flex flex-row">
-            <span className="Input-text">Don&apos;t have an account yet?</span>
-            <div className="ml-[-35px]">
-              <Link href="/signup" className="signup-text">
-                Sign up
-              </Link>
-            </div>
           </div>
         </div>
       </div>

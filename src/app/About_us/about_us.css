@@ -1,0 +1,53 @@
+.process-divider {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+  }
+  
+  .process-divider__line {
+    width: 16px;
+    height: 1px;
+    background: var(--color-red-70, #ff7364);
+  }
+  
+  .process-divider__text {
+    color: var(--color-red-70, #ff7364);
+    margin: 0 8px;
+    font-size: var(--font-size-normal);
+    line-height: 22px;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .engage-title {
+    color: var(--color-blue-27, #302f5b);
+    text-align: center;
+    font-family: var(--font-family-Font-3, Poppins);
+    font-size: var(--font-size-44, 44px);
+    font-style: normal;
+    font-weight: var(--font-weight-300, 300);
+    line-height: var(--line-height-57_2, 57.2px);
+    text-transform: capitalize;
+    display: block;
+  }
+  .engage-description {
+    margin: 1em 0;
+    text-align: center;
+    display: block;
+  
+    color: var(--color-grey-39, #5f6168);
+    font-family: var(--font-family-Font-3, Poppins);
+    font-size: var(--font-size-16, 16px);
+    font-style: normal;
+    font-weight: var(--font-weight-300, 300);
+    line-height: var(--line-height-26_56, 26.56px); /* 166% */
+  }
+  .google-text {
+    color: var(--color-blue-27, #302f5b);
+    font-family: var(--font-family-Font-3, Poppins);
+    font-size: var(--font-size-24, 24px);
+    font-style: normal;
+    font-weight: var(--font-weight-300, 300);
+    line-height: var(--line-height-31_2, 31.2px); /* 130% */
+    text-transform: capitalize;
+  }
