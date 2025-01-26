@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "@/styles/form.module.css";
+import "./contactinput.css";
 
 interface FormData {
   name: string;
@@ -38,121 +39,129 @@ const CommentForm = () => {
 
   return (
     <>
-    <div className="">
-      <div className="contact-divider">
-            <div className="contact-divider__line"></div>
-            <span className="contact-divider__text">Contact Us</span>
-            <div className="contact-divider__line"></div>
-          </div>
-          <span className="contact-title">
-            we are always ready to
-            <br />
-            help you
-          </span>
-    </div>
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-w-2xl mx-auto p-6 border border-gray-200 rounded-md shadow-md"
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        {/* Name Input */}
-        <div>
-          <label htmlFor="name" className={styles["form-label"]}>
-            Enter Your name*
-          </label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Enter Your name"
-            className={styles["form-input"]}
-            {...register("name")}
-          />
-          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+      <div className="container">
+        <div className="contact-divider " style={{ marginTop: "100px" }}>
+          <div className="contact-divider__line"></div>
+          <span className="contact-divider__text">Contact Us</span>
+          <div className="contact-divider__line"></div>
         </div>
-
-        {/* Email Input */}
-        <div>
-          <label htmlFor="email" className={styles["form-label"]}>
-            Enter Your email*
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Enter Your email"
-            className={styles["form-input"]}
-            {...register("email")}
-          />
-          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-        </div>
-
-        {/* Subject Input */}
-        <div>
-          <label htmlFor="subject" className={styles["form-label"]}>
-            Enter Your subject*
-          </label>
-          <input
-            id="subject"
-            type="text"
-            placeholder="Enter Your subject"
-            className={styles["form-input"]}
-            {...register("subject")}
-          />
-          {errors.subject && (
-            <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>
-          )}
-        </div>
-
-        {/* Website Input */}
-        <div>
-          <label htmlFor="website" className={styles["form-label"]}>
-            Enter Your website*
-          </label>
-          <input
-            id="website"
-            type="text"
-            placeholder="Enter Your website"
-            className={styles["form-input"]}
-            {...register("website")}
-          />
-          {errors.website && (
-            <p className="text-red-500 text-xs mt-1">{errors.website.message}</p>
-          )}
-        </div>
+        <span className="contact-title">
+          we are always ready to
+          <br />
+          help you
+        </span>
       </div>
-
-      {/* Comment */}
-      <div className="mb-4">
-        <label htmlFor="comment" className={styles["form-label"]}>
-          Enter your comment
-        </label>
-        <textarea
-          id="comment"
-          rows={5}
-          placeholder="Enter your comment"
-          className={styles["form-input"]}
-          {...register("comment")}
-        ></textarea>
-        {errors.comment && (
-          <p className="text-red-500 text-xs mt-1">{errors.comment.message}</p>
-        )}
-      </div>
-
-      {/* Save Checkbox */}
-      <div className="flex items-center mb-4">
-        <input type="checkbox" id="save" className={styles["checkbox"]} />
-        <label htmlFor="save" className="text-sm text-gray-600">
-          Save my name, email, and website in this browser for the next time I comment.
-        </label>
-      </div>
-
-      {/* Submit Button */}
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition"
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="max-w-2xl mx-auto p-6  border-gray-200 rounded-md shadow-md" style={{marginBottom:"200px"}}
       >
-        Submit
-      </button>
-    </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/* Name Input */}
+          <div
+            className="d-flex mr-5"
+            style={{ marginLeft: "300px", marginTop: "35px" }}
+          >
+            <div className="flex-row">
+              <input
+                id="name"
+                type="text"
+                placeholder="Enter Your name"
+                className="input"
+                {...register("name")}
+              />
+              {errors.name && (
+                <p className="text-red-500 text-xs mt-1 ">
+                  {errors.name.message}
+                </p>
+              )}
+            </div>
+
+            {/* Email Input */}
+            <div className="flex-row" style={{ marginLeft: "30px" }}>
+              <input
+                id="email"
+                type="email"
+                placeholder="Enter Your email"
+                className="input"
+                {...register("email")}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+          </div>
+          <div
+            className="d-flex "
+            style={{ marginLeft: "300px", marginTop: "35px" }}
+          >
+            {/* Subject Input */}
+            <div>
+              <input
+                id="subject"
+                type="text"
+                placeholder="Enter Your subject"
+                className="input"
+                {...register("subject")}
+              />
+              {errors.subject && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.subject.message}
+                </p>
+              )}
+            </div>
+
+            {/* Website Input */}
+            <div className="" style={{ marginLeft: "30px" }}>
+              <input
+                id="website"
+                type="text"
+                placeholder="Enter Your website"
+                className="input"
+                {...register("website")}
+              />
+              {errors.website && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.website.message}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Comment */}
+        <div className="mb-4 d-flex" style={{ marginLeft: "300px" }}>
+          <textarea
+            id="comment"
+            rows={5}
+            placeholder="Enter your comment"
+            className="coment_filed"
+            {...register("comment")}
+          ></textarea>
+          {errors.comment && (
+            <p className="text-red-500 text-xs mt-1">
+              {errors.comment.message}
+            </p>
+          )}
+        </div>
+
+        {/* Save Checkbox */}
+        <div className="flex items-center mb-4" style={{ marginLeft: "300px" }}>
+          <input type="checkbox" id="save" className={styles["checkbox"]} />
+          <label htmlFor="save" className="check_text">
+            Save my name, email, and website in this browser for the next time I
+            comment.
+          </label>
+        </div>
+
+        {/* Submit Button */}
+        <div className=""style={{marginLeft:"300px"}}>
+          <button type="submit" className="submit_button">
+            <span className="submit_text">Submit</span>
+          </button>
+        </div>
+      </form>
     </>
   );
 };

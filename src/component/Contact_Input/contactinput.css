@@ -1,0 +1,78 @@
+.input {
+  display: flex;
+  width: 363.7px;
+  height: 52.28px;
+  padding: 15.64px 14.94px 15.64px 14.93px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #eaecee; /* Default border color */
+  background: #fff;
+  outline: none; /* Ensure default outline is removed */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+.input:focus {
+  border-color: #ff7364; /* Border color when focused */
+}
+.coment_filed {
+  display: flex;
+  width: 759.25px;
+  height: 170px;
+  padding: 16.93px 601.95px 93.79px 14.93px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #eaecee; /* Default border color */
+  background: #fff;
+  outline: none; /* Remove default browser outline */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+.coment_filed:focus {
+  border-color: #ff7364; /* Border color when focused */
+}
+.submit_button {
+  display: flex;
+  width: 133.84px;
+  padding: 15.94px 27.88px 16.33px 27.87px;
+  justify-content: center;
+  align-items: center;
+  gap: 6.572px;
+  border-radius: 4px;
+  background: #ff7364; /* Button background */
+  cursor: pointer; /* Ensures pointer cursor on hover */
+  transition: background 0.3s ease; /* Smooth transition */
+}
+
+.submit_button:hover {
+  background: #3639A4; /* Darker shade on hover */
+}
+
+.submit_text {
+  display: flex;
+  width: auto; /* Adjust width dynamically based on text */
+  height: 20px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff; /* White text */
+  text-align: center;
+  font-family: Poppins, sans-serif; /* Custom font */
+  font-size: 13.9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24.4px; /* Adjusted for better vertical alignment */
+  letter-spacing: 1.743px; /* Spaced uppercase letters */
+  text-transform: uppercase;
+}
+.check_text {
+  color: #5f6168;
+  font-family: Poppins, sans-serif; /* Custom font */
+
+  font-size: 15.9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26.45px; /* 166.352% */
+}
