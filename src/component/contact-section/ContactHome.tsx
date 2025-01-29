@@ -4,6 +4,7 @@ import Image from "next/image";
 import Snake from "@/assets/Snake.png";
 import chat from "@/assets/chat.png";
 import click from "@/assets/click.svg";
+
 export default function footer() {
   return (
     <div className="Footer flex flex-row md:w-[135%] justify-between">

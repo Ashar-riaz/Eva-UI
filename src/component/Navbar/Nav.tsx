@@ -13,7 +13,7 @@ export default function Nav({ showBrand = true, showLoginButton = true }) {
                             <a className="navbar-brand" href="/">Eva-DigitalHuman</a>
                         )}
                     </div>
-                    <div className="d-flex justify-content-center align-items-center">
+                    <div className="justify-center align-items-center hidden lg:flex ">
                         <ul className="navbar-nav">
                             <li className="nav-item">
                                 <a className="nav-link active d-flex align-items-center" aria-current="page" href="/">

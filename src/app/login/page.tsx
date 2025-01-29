@@ -1,16 +1,65 @@
-import React from "react";
+"use client"; 
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "@/component/Navbar/Nav";
 import Image from "next/image";
 import logo from "@/assets/logo.png.png";
 import "./login.css";
 import Link from "next/link";
 
-export default function page() {
+export default function Page() {
+  // State for managing email, password, and API response
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter(); // Hook for navigation
+
+  // Handle form submission
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed. Please check your credentials.");
+      }
+
+      const data = await response.json();
+
+      // Save token or user data if required
+      localStorage.setItem("token", data.token); // Example: saving token in localStorage
+      localStorage.setItem("user", JSON.stringify(data.user));
+      // Redirect to the dashboard
+      router.push("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Navbar showBrand={false} showLoginButton={false} />
       <div className="bg-white">
-        <div className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[82.87px] mx-auto mt-4">
+        <form
+          onSubmit={handleLogin}
+          className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[82.87px] mx-auto mt-4"
+        >
           {/* Logo Section */}
           <div>
             <Image src={logo} alt="Logo" />
@@ -21,7 +70,10 @@ export default function page() {
             <span className="Input-text">Email address</span>
             <input
               type="email"
-              className="input-field" /* Applied updated styles */
+              className="input-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -29,8 +81,11 @@ export default function page() {
           <div className="mt-[-54px]">
             <span className="Input-text">Password *</span>
             <input
-              type="password" /* Changed to password type */
-              className="input-field" /* Applied updated styles */
+              type="password"
+              className="input-field"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
@@ -43,10 +98,17 @@ export default function page() {
 
           {/* Login Button */}
           <div className="mt-[-20px]">
-            <button className="Login-button">
-              <span className="btn-text">Login</span>
+            <button
+              type="submit"
+              className="Login-button"
+              disabled={loading}
+            >
+              <span className="btn-text">{loading ? "Logging in..." : "Login"}</span>
             </button>
           </div>
+
+          {/* Error Message */}
+          {error && <p className="text-red-500 mt-2">{error}</p>}
 
           {/* Signup Section */}
           <div className="mt-[-30px] flex flex-row">
@@ -57,7 +119,7 @@ export default function page() {
               </Link>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
