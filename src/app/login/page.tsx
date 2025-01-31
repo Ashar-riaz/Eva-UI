@@ -12,7 +12,7 @@ export default function Page() {
   // State for managing email, password, and API response
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter(); // Hook for navigation
@@ -51,12 +51,16 @@ export default function Page() {
       } else {
         router.push("/dashboard"); // User dashboard
       }
-    } catch (err) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unexpected error occurred');
+      }
     } finally {
       setLoading(false);
     }
-  };
+}
 
   return (
     <>
