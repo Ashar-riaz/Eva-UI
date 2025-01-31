@@ -1,5 +1,5 @@
 "use client"; 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/component/Navbar/Nav";
 import Image from "next/image";
@@ -16,15 +16,6 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter(); // Hook for navigation
-
-  // Check if the user is already logged in
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      console.log("User already logged in. Redirecting...");
-      router.replace("/dashboard"); // Redirect to dashboard if token exists
-    }
-  }, []);
 
   // Handle form submission
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,38 +40,27 @@ export default function Page() {
       }
 
       const data = await response.json();
-      console.log("Login response data:", data);
 
-      // Save token and user details
+      // Save token or user data if required
+      // localStorage.setItem("token", data.token); // Example: saving token in localStorage
       Cookies.set("token", data.token, { expires: 1 });
       localStorage.setItem("name", data.name);
-
-      console.log("Token saved:", Cookies.get("token"));
-      console.log("User name saved:", localStorage.getItem("name"));
-
-      // Redirect to dashboard
-      console.log("Redirecting to dashboard...");
+      // Redirect based on user role
       if (email === "123@gmail.com") {
-        router.replace("/Admin/dashboard"); // Admin page
+        router.push("/Admin/dashboard"); // Admin page
       } else {
-        router.replace("/dashboard"); // User dashboard
+        router.push("/dashboard"); // User dashboard
       }
-
-      // Force reload after navigation (if needed)
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-      
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("An unexpected error occurred");
+        setError('An unexpected error occurred');
       }
     } finally {
       setLoading(false);
     }
-  };
+}
 
   return (
     <>
