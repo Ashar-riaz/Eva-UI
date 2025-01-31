@@ -6,6 +6,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.png.png";
 import "./login.css";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 export default function Page() {
   // State for managing email, password, and API response
@@ -41,10 +42,15 @@ export default function Page() {
       const data = await response.json();
 
       // Save token or user data if required
-      localStorage.setItem("token", data.token); // Example: saving token in localStorage
-      localStorage.setItem("user", JSON.stringify(data.user));
-      // Redirect to the dashboard
-      router.push("/dashboard");
+      // localStorage.setItem("token", data.token); // Example: saving token in localStorage
+      Cookies.set("token", data.token, { expires: 1 });
+      localStorage.setItem("name", data.name);
+      // Redirect based on user role
+      if (email === "123@gmail.com") {
+        router.push("/Admin/dashboard"); // Admin page
+      } else {
+        router.push("/dashboard"); // User dashboard
+      }
     } catch (err) {
       setError(err.message);
     } finally {

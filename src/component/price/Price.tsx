@@ -12,11 +12,9 @@ interface PriceProps {
   readonly text1: string;
   readonly imageSrc2: string;
   readonly text2: string;
-  readonly imageSrc3: string;
-  readonly text3: string;
 }
 
-export default function Price({ title, heading, imageSrc, text ,imageSrc1,text1,imageSrc2,text2,imageSrc3,text3}: PriceProps) {
+export default function Price({ title, heading, imageSrc, text ,imageSrc1,text1,imageSrc2,text2}: PriceProps) {
   return (
     <div className="price-card">
       <span className="price-title">{title}</span>
@@ -36,10 +34,7 @@ export default function Price({ title, heading, imageSrc, text ,imageSrc1,text1,
         <Image src={imageSrc2} alt={title} width={20} height={16} />
         <span className="price-text">{text2}</span>
       </div>
-      <div className="price-details">
-        <Image src={imageSrc3} alt={title} width={20} height={16} />
-        <span className="price-text">{text3}</span>
-      </div>
+      
       <button 
         style={{
           borderRadius: "var(--radius-4, 4px)",

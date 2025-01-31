@@ -352,41 +352,48 @@ const HomePage: React.FC = () => {
         <span className="engage-title">Choose Pricing Plan</span>
         <div className="flex flex-col md:flex-row gap-6 mt-11 items-center justify-center">
           <Price
-            title="Starter"
-            heading="19$"
+            title="Free Trial"
+            heading="Free"
             imageSrc={tick}
-            text="Basic features for individuals."
+            text="30 minutes of usage."
             imageSrc1={tick}
-            text1="Basic features for individuals."
-            imageSrc2={tick}
-            text2="Basic features for individuals."
-            imageSrc3={tick}
-            text3="Basic features for individuals."
+            text1="limited features."
+            imageSrc2={cross}
+            text2="API access."
           />
 
-          <Price1
-            title="Pro"
-            heading="49$"
-            imageSrc={cross}
-            text="Advanced features for teams."
-            imageSrc1={cross}
-            text1="Advanced features for teams."
+          <Price
+            title="Basic Plan"
+            heading="$5-$7/month"
+            imageSrc={tick}
+            text="120 minutes/month."
+            imageSrc1={tick}
+            text1="Essential features."
             imageSrc2={cross}
-            text2="Advanced features for teams."
-            imageSrc3={cross}
-            text3="Advanced features for teams."
+            text2="API access."
+            
+          />
+          <Price1
+            title="Prenium Plan"
+            heading="$15-$20/month"
+            imageSrc={tick}
+            text="500 minutes/month, priority access."
+            imageSrc1={tick}
+            text1="Priority access."
+            imageSrc2={cross}
+            text2="API access."
+            
           />
           <Price
-            title="Enterprise"
-            heading="99$"
+            title="Business Plan"
+            heading="$50-$100/month"
             imageSrc={tick}
-            text="All features for large organizations."
+            text="2,000+ minutes"
             imageSrc1={tick}
-            text1="All features for large organizations."
+            text1="API access."
             imageSrc2={tick}
-            text2="All features for large organizations."
-            imageSrc3={tick}
-            text3="All features for large organizations."
+            text2="Support."
+            
           />
         </div>
         <div className="mt-[110px]">
