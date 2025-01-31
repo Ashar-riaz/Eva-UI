@@ -18,7 +18,7 @@ export default function Page() {
   const router = useRouter(); // Hook for navigation
 
   // Handle form submission
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
