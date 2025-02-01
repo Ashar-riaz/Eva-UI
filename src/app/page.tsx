@@ -364,7 +364,7 @@ const HomePage: React.FC = () => {
 
           <Price
             title="Basic Plan"
-            heading="$5-$7/month"
+            heading="$5/month"
             imageSrc={tick}
             text="120 minutes/month."
             imageSrc1={tick}
@@ -375,7 +375,7 @@ const HomePage: React.FC = () => {
           />
           <Price1
             title="Prenium Plan"
-            heading="$15-$20/month"
+            heading="$15/month"
             imageSrc={tick}
             text="500 minutes/month, priority access."
             imageSrc1={tick}
@@ -386,7 +386,7 @@ const HomePage: React.FC = () => {
           />
           <Price
             title="Business Plan"
-            heading="$50-$100/month"
+            heading="$50/month"
             imageSrc={tick}
             text="2,000+ minutes"
             imageSrc1={tick}

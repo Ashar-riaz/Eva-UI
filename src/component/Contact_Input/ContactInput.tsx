@@ -94,10 +94,10 @@ const CommentForm = () => {
           </div>
           <div
             className="d-flex "
-            style={{ marginLeft: "300px", marginTop: "35px" }}
+            style={{ marginLeft: "300px" }}
           >
-            {/* Subject Input */}
-            <div>
+            {/* Subject Input */}            
+           <div> 
               <input
                 id="subject"
                 type="text"
