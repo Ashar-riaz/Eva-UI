@@ -35,31 +35,8 @@ export default function Price({ title, heading, imageSrc, text ,imageSrc1,text1,
         <span className="price-text1">{text2}</span>
       </div>
       
-      <button 
-        style={{
-          borderRadius: "var(--radius-4, 4px)",
-          background: "#3639A4",
-          boxShadow: "0px 12px 32px 0px rgba(25, 41, 66, 0.07)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          alignSelf: "stretch",
-          margin:"20px"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderRadius: "0px 0px var(--radius-4, 4px) var(--radius-4, 4px)",
-            borderTop: "var(--stroke-weight-0_5, 0.5px) solid #EAECEE",
-            padding: "34px 125.27px",
-            height: "93.5px",
-            width: "100%",
-            color:"#FFFFFF"
-          }}
-        >
+      <button className="button-price">
+        <div className="button-price-text">
           <span>Get Started</span>
           <Image src={arrow_price} alt="arrow" width={10} height={10} />
         </div>

@@ -24,15 +24,13 @@ export default function Dashboard() {
 
   return (
     <>
-      <div className="flex justify-between p-4">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+      <div className="flex justify-between p-4 bg-black">
+        <h2 className="text-xl font-semibold text-white">
+          Welcome, <span className="text-color">{username || "User"}!</span>
+        </h2>
         <Logout />
       </div>
-      <div className="text-center mt-4">
-        <h2 className="text-xl font-semibold">
-          Welcome, {username || "User"}!
-        </h2>
-      </div>
+
       <Avatar />
     </>
   );

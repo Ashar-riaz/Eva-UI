@@ -1,6 +1,6 @@
 .price-card {
-    width: 446px;
-    height: 456px;
+    width: 400px;
+    height: 363px;
     padding: 26px;
     background-color: white;
     border-radius: 4px;
@@ -60,4 +60,31 @@
     line-height: 28px;
     text-transform: capitalize;
   }
-  
+
+.button-price1 {
+  border-radius: var(--radius-4, 4px);
+  background: #FFF;
+  box-shadow: 0px 12px 32px 0px rgba(25, 41, 66, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  margin: 20px;
+}
+.button-price-text1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0px 0px var(--radius-4, 4px) var(--radius-4, 4px);
+  border-top: var(--stroke-weight-0_5, 0.5px) solid #EAECEE;
+  padding: 34px 103.27px;
+  height: 63.5px;
+  width: 100%;
+}
+.button-price1:hover {
+  background: #302f5b;
+}
+
+.button-price1:hover .button-price-text1 {
+  color: white;
+}

@@ -218,7 +218,6 @@ const HomePage: React.FC = () => {
               middleFeatureText="Voice-enabled chat-bots"
               bottomFeatureImage={check}
               bottomFeatureText="Seamless mobile integration for on-the-go marketing"
-              buttonText="Read More"
             />
           </div>
         </div>

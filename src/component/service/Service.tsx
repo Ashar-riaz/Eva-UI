@@ -6,7 +6,6 @@ interface ServiceProps {
   readonly description: string;
   readonly imageUrl: string;
   readonly buttonText?: string;
-  readonly onButtonClick?: () => void;
   readonly topFeatureImage: string;
   readonly topFeatureText: string;
   readonly middleFeatureImage: string;
@@ -20,7 +19,6 @@ export default function Service({
   description,
   imageUrl,
   buttonText,
-  onButtonClick,
   topFeatureImage,
   topFeatureText,
   middleFeatureImage,
@@ -156,31 +154,7 @@ export default function Service({
           </p>
         </div>
       </div>
-      <div>
-        <button
-          className="px-4 py-2 mb-4"
-          style={{
-            borderRadius: "8px",
-            background: "#FFF",
-            boxShadow: "0px 12px 32px 0px rgba(25, 41, 66, 0.07)",
-          }}
-        >
-          Read more
-        </button>
-        {buttonText && onButtonClick && (
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mt-2"
-            onClick={onButtonClick}
-            style={{
-              borderRadius: "8px",
-              background: "#FFF",
-              boxShadow: "0px 12px 32px 0px rgba(25, 41, 66, 0.07)",
-            }}
-          >
-            {buttonText}
-          </button>
-        )}
-      </div>
+     
     </div>
   );
 }
