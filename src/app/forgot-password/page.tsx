@@ -43,7 +43,7 @@ export default function Page() {
       } else {
         setErrorMessage(data.error || "Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setErrorMessage("Network error. Please try again.");
     } finally {
       setIsLoading(false);
@@ -73,7 +73,7 @@ export default function Page() {
       } else {
         setErrorMessage(data.error || "Password reset failed. Try again.");
       }
-    } catch (error) {
+    } catch {
       setErrorMessage("Network error. Please try again.");
     } finally {
       setIsLoading(false);
