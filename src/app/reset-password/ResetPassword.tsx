@@ -1,15 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { useSearchParams } from "next/navigation";
 
 const ResetPassword = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
+  const router = useRouter(); // Initialize Next.js router
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,18 +28,33 @@ const ResetPassword = () => {
     }
 
     try {
+      setLoading(true);
       const response = await fetch("http://localhost:8000/reset-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, new_password: newPassword }),
+        body: JSON.stringify({ 
+          token: token, 
+          new_password: newPassword 
+        }),
       });
 
       const data = await response.json();
-      setMessage(data.message || "Password reset successful!");
+      if (response.ok) {
+        setMessage("Password reset successful! Redirecting to login...");
+        
+        // 🚀 Redirect to login after 2 seconds
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
+      } else {
+        setMessage(data.message || "Password reset failed.");
+      }
     } catch (error) {
       setMessage("Error resetting password. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,9 +66,8 @@ const ResetPassword = () => {
         {message && <p className="text-red-500">{message}</p>}
 
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <label htmlFor="newPassword" className="mb-2 font-medium">New Password</label>
+          <label className="mb-2 font-medium">New Password</label>
           <input
-            id="newPassword"
             type="password"
             className="border p-2 rounded mb-4"
             value={newPassword}
@@ -58,9 +75,8 @@ const ResetPassword = () => {
             required
           />
 
-          <label htmlFor="confirmPassword" className="mb-2 font-medium">Confirm Password</label>
+          <label className="mb-2 font-medium">Confirm Password</label>
           <input
-            id="confirmPassword"
             type="password"
             className="border p-2 rounded mb-4"
             value={confirmPassword}
@@ -71,8 +87,9 @@ const ResetPassword = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            disabled={loading}
           >
-            Reset Password
+            {loading ? "Resetting..." : "Reset Password"}
           </button>
         </form>
       </div>

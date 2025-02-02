@@ -1,18 +1,19 @@
 "use client";
-import React, { useState } from 'react';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import React, { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import Navbar from "@/component/Navbar/Nav";
-import Image from 'next/image';
-import logo from '@/assets/logo.png.png';
-import Link from 'next/link';
-import "@/app/login/login.css"
+import Image from "next/image";
+import logo from "@/assets/logo.png.png";
+import Link from "next/link";
+import "@/app/login/login.css";
 
 export default function Page() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // Error state
 
   const [isFocused, setIsFocused] = useState({
     name: false,
@@ -31,22 +32,30 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage(""); // Reset error before submission
     try {
-      const response = await fetch('http://127.0.0.1:8000/signup', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:8000/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password, confirm_password: confirmPassword }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          confirm_password: confirmPassword,
+        }),
       });
       if (response.ok) {
         console.log("Signup successful!");
         window.location.href = "/login";
       } else {
-        console.error("Signup failed. Please try again.");
+        const data = await response.json();
+        setErrorMessage(data.detail || "Signup failed. Please try again.");
       }
     } catch (error) {
       console.error("Error during fetch:", error);
+      setErrorMessage("An error occurred. Please try again.");
     }
   };
 
@@ -54,75 +63,117 @@ export default function Page() {
     <>
       <Navbar showBrand={false} showLoginButton={false} />
       <div className="bg-white">
-        <form onSubmit={handleSubmit} className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[82.87px] mx-auto mt-4">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[82.87px] mx-auto mt-4"
+        >
           <div className="">
             <Image src={logo} alt="Logo" />
           </div>
           <div className="Input">
-            <span className="Input-text">Name</span>
+            <span className="Input-text">Name*</span>
             <input
               type="text"
               value={name}
+              required
               onChange={(e) => setName(e.target.value)}
-              onFocus={() => handleFocus('name')}
-              onBlur={() => handleBlur('name')}
-              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
+              onFocus={() => handleFocus("name")}
+              onBlur={() => handleBlur("name")}
+              className={`input-field ${
+                isFocused.name ? "border-red-500" : ""
+              }`}
             />
           </div>
           <div className="mt-[-54px]">
-            <span className="Input-text">Email address</span>
+            <span className="Input-text">Email address*</span>
             <input
               type="email"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
-              onFocus={() => handleFocus('email')}
-              onBlur={() => handleBlur('email')}
-              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
+              onFocus={() => handleFocus("email")}
+              onBlur={() => handleBlur("email")}
+              className={`input-field ${
+                isFocused.name ? "border-red-500" : ""
+              }`}
             />
           </div>
           <div className="mt-[-54px] relative">
             <span className="Input-text">Password *</span>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
-              onFocus={() => handleFocus('password')}
-              onBlur={() => handleBlur('password')}
-              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
+              onFocus={() => handleFocus("password")}
+              onBlur={() => handleBlur("password")}
+              className={`input-field ${
+                isFocused.name ? "border-red-500" : ""
+              }`}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-[40px] text-gray-500"
             >
-              {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
             </button>
           </div>
           <div className="mt-[-54px] relative">
             <span className="Input-text">Confirm Password *</span>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               value={confirmPassword}
+              required
               onChange={(e) => setConfirmPassword(e.target.value)}
-              onFocus={() => handleFocus('confirmPassword')}
-              onBlur={() => handleBlur('confirmPassword')}
-              className={`input-field ${isFocused.name ? 'border-red-500' : ''}`}
+              onFocus={() => handleFocus("confirmPassword")}
+              onBlur={() => handleBlur("confirmPassword")}
+              className={`input-field ${
+                isFocused.name ? "border-red-500" : ""
+              }`}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-[40px] text-gray-500"
             >
-              {showPassword ? <EyeSlashIcon className="h-5 w-5" /> : <EyeIcon className="h-5 w-5" />}
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
             </button>
           </div>
-          <div className="mt-[-50px]">
-            <button type="submit" className="Login-button"><span className='btn-text'>Sign up</span></button>
+          <div className="flex">
+            <span className="flex mt-[-62px] text-[15px] text-color mr-[200px] w-[250px]">
+              . Minimum 8 characters <br />
+              . At least 1 uppercase letter (A-Z) <br />
+              . At least 1 number (0-9)
+            </span>
           </div>
+          <div className="mt-[-50px]">
+            <button type="submit" className="Login-button">
+              <span className="btn-text">Sign up</span>
+            </button>
+          </div>
+          {errorMessage && (
+            <div
+              className="mt-[-40px] text-center"
+              style={{ color: "#ff7364", fontSize: "17px" }}
+            >
+              {errorMessage}
+            </div>
+          )}
           <div className="mt-[-30px] flex flex-row">
             <span className="Input-text">Already have an account?</span>
             <div className="ml-[-35px]">
-              <Link href="/login" className="signup-text">Login</Link>
+              <Link href="/login" className="signup-text">
+                Login
+              </Link>
             </div>
           </div>
         </form>
