@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const ResetPassword = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
-  const router = useRouter(); // Initialize Next.js router
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -66,8 +65,9 @@ const ResetPassword = () => {
         {message && <p className="text-red-500">{message}</p>}
 
         <form onSubmit={handleSubmit} className="flex flex-col">
-          <label className="mb-2 font-medium">New Password</label>
+          <label htmlFor="newPassword" className="mb-2 font-medium">New Password</label>
           <input
+            id="newPassword"
             type="password"
             className="border p-2 rounded mb-4"
             value={newPassword}
@@ -75,8 +75,9 @@ const ResetPassword = () => {
             required
           />
 
-          <label className="mb-2 font-medium">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="mb-2 font-medium">Confirm Password</label>
           <input
+            id="confirmPassword"
             type="password"
             className="border p-2 rounded mb-4"
             value={confirmPassword}
