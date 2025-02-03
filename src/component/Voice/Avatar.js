@@ -68,7 +68,7 @@ const Avatar = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/process_voice", {
+      const response = await fetch("http://localhost:8080/process_voice/", {
         method: "POST",
         body: formData,
         signal: controllerRef.current.signal,
@@ -118,7 +118,7 @@ const Avatar = () => {
         <div className="flex flex-row space-x-5 w-full max-w-6xl">
           {/* Avatar Display Section */}
           <div
-            className="flex-1 p-5 flex-col items-center justify-center"
+            className="flex-1 flex-col items-center justify-center"
             style={{ border: "0.1px solid gray", height: "700px", marginLeft: "40px", width: "500px" }}
           >
             <h2 className="text-white text-xl mb-3 text-center" style={{ borderBottom: "0.1px solid gray" }}>
@@ -129,7 +129,7 @@ const Avatar = () => {
                 src={gif}
                 alt="Processing Animation"
                 className="w-72 h-auto"
-                style={{ marginLeft: "61px", marginTop: "89px" }}
+                style={{ marginLeft: "36px", marginTop: "55px" }}
               />
             ) : (
               avatarResponse && (
@@ -138,7 +138,7 @@ const Avatar = () => {
                   autoPlay
                   onEnded={() => setShowGif(true)}
                   className="w-72 h-auto"
-                  style={{ marginLeft: "61px", marginTop: "89px" }}
+                  style={{ marginLeft: "36px", marginTop: "55px" }}
                 />
               )
             )}
@@ -146,7 +146,7 @@ const Avatar = () => {
 
           {/* Chat History Section */}
           <div
-            className="flex-1 p-5 flex flex-col ml-[40px]"
+            className="flex-1 flex flex-col ml-[40px]"
             style={{ border: "0.1px solid gray", height: "700px", marginLeft: "20px" }}
           >
             <h2 className="text-white text-xl mb-3 text-center" style={{ borderBottom: "0.1px solid gray" }}>
@@ -178,7 +178,7 @@ const Avatar = () => {
           </div>
 
           {/* Voice Recorder Section */}
-          <div className="flex-1 p-5 rounded-lg flex flex-col items-center justify-center">
+          <div className="flex-1 rounded-lg flex flex-col items-center justify-center">
             <div className="bg-gray-800 p-3 rounded-lg">
               {!recording ? (
                 <DotLottieReact
