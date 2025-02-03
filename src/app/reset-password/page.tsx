@@ -1,11 +1,9 @@
-
-
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Page() {
+function ResetPasswordPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
@@ -45,7 +43,6 @@ export default function Page() {
       if (response.ok) {
         setMessage("Password reset successful! Redirecting to login...");
         
-        // 🚀 Redirect to login after 2 seconds
         setTimeout(() => {
           router.push("/login");
         }, 2000);
@@ -60,44 +57,37 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-semibold mb-4">Reset Password</h2>
-
-        {message && <p className="text-red-500">{message}</p>}
-
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          <label htmlFor="newPassword" className="mb-2 font-medium">New Password</label>
-          <input
-            id="newPassword"
-            type="password"
-            className="border p-2 rounded mb-4"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-
-          <label htmlFor="confirmPassword" className="mb-2 font-medium">Confirm Password</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            className="border p-2 rounded mb-4"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-            disabled={loading}
-          >
-            {loading ? "Resetting..." : "Reset Password"}
-          </button>
-        </form>
-      </div>
+    <div>
+      <h2>Reset Your Password</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="password"
+          placeholder="New Password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "Resetting..." : "Reset Password"}
+        </button>
+      </form>
+      {message && <p>{message}</p>}
     </div>
   );
-};
+}
 
-
+// 🛠️ Wrap component in Suspense
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <ResetPasswordPage />
+    </Suspense>
+  );
+}
