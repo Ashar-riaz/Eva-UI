@@ -1,15 +1,13 @@
 "use client";
-
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/component/Navbar/Nav";
 import Image from "next/image";
 import logo from "@/assets/logo.png.png";
 import "./forgot.css";
 
-function ForgotPasswordPage() {
+export default function Page() {
   const searchParams = useSearchParams();
-
   const [email, setEmail] = useState("");
   const [token, setToken] = useState<string | null>(null);
   const [newPassword, setNewPassword] = useState("");
@@ -17,6 +15,7 @@ function ForgotPasswordPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  // Extract token from URL on component mount
   useEffect(() => {
     const tokenFromURL = searchParams.get("token");
     if (tokenFromURL) {
@@ -24,27 +23,58 @@ function ForgotPasswordPage() {
     }
   }, [searchParams]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Function to request password reset link
+  const handleRequestResetLink = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage("");
+    setSuccessMessage("");
     setIsLoading(true);
-    
+
     try {
-      const response = await fetch('http://127.0.0.1:8000/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+      const response = await fetch("http://127.0.0.1:8000/request-password-reset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
-      
+
+      const data = await response.json();
       if (response.ok) {
-        setSuccessMessage('Password reset link sent to your email');
-        setErrorMessage('');
+        setSuccessMessage(data.message); // "Password reset link sent to your email"
       } else {
-        setErrorMessage('Failed to send reset link');
-        setSuccessMessage('');
+        setErrorMessage(data.error || "Something went wrong. Please try again.");
       }
     } catch {
-      setErrorMessage('An error occurred');
-      setSuccessMessage('');
+      setErrorMessage("Network error. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Function to reset password
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage("");
+    setSuccessMessage("");
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, new_password: newPassword }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setSuccessMessage("Password reset successful! Redirecting to login...");
+        setTimeout(() => {
+          window.location.href = "/login"; // Redirect after success
+        }, 2000);
+      } else {
+        setErrorMessage(data.error || "Password reset failed. Try again.");
+      }
+    } catch {
+      setErrorMessage("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -54,17 +84,18 @@ function ForgotPasswordPage() {
     <>
       <Navbar showBrand={false} showLoginButton={true} />
       <div className="bg-white mt-20">
-        <div className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[50px] mx-auto mt-4 rounded-lg shadow-lg">
+        <div className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[50px] mx-auto mt-4">
           <div>
             <Image src={logo} alt="Logo" />
           </div>
 
+          {/* If token is present, show Reset Password form, otherwise show Request Reset Link form */}
           {!token ? (
             <>
               <span className="instruction-text">
                 Lost your password? Enter your email to receive a reset link.
               </span>
-              <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
+              <form onSubmit={handleRequestResetLink} className="w-full flex flex-col items-center">
                 <div className="Input mb-4">
                   <span className="Inputforgot-text">Email address</span>
                   <input
@@ -87,7 +118,7 @@ function ForgotPasswordPage() {
               <span className="instruction-text">
                 Enter your new password to reset your account.
               </span>
-              <form className="w-full flex flex-col items-center">
+              <form onSubmit={handleResetPassword} className="w-full flex flex-col items-center">
                 <div className="Input mb-4">
                   <span className="Inputforgot-text">New Password</span>
                   <input
@@ -109,14 +140,5 @@ function ForgotPasswordPage() {
         </div>
       </div>
     </>
-  );
-}
-
-// 🛠️ Wrap component in Suspense
-export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <ForgotPasswordPage />
-    </Suspense>
   );
 }
