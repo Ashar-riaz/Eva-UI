@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Navbar from "@/component/Navbar/Nav";
 import Image from "next/image";
 import logo from "@/assets/logo.png.png";
@@ -8,12 +8,17 @@ import "./forgot.css";
 
 export default function Page() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [token, setToken] = useState<string | null>(null);
   const [newPassword, setNewPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // API Base URL (Ensure you have this in your .env.local)
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
   // Extract token from URL on component mount
   useEffect(() => {
@@ -30,8 +35,14 @@ export default function Page() {
     setSuccessMessage("");
     setIsLoading(true);
 
+    if (!email) {
+      setErrorMessage("Please enter a valid email address.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/request-password-reset", {
+      const response = await fetch(`${API_BASE_URL}/request-password-reset`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -39,7 +50,7 @@ export default function Page() {
 
       const data = await response.json();
       if (response.ok) {
-        setSuccessMessage(data.message); // "Password reset link sent to your email"
+        setSuccessMessage("Password reset link sent to your email.");
       } else {
         setErrorMessage(data.error || "Something went wrong. Please try again.");
       }
@@ -57,8 +68,14 @@ export default function Page() {
     setSuccessMessage("");
     setIsLoading(true);
 
+    if (newPassword.length < 6) {
+      setErrorMessage("Password must be at least 6 characters long.");
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/reset-password", {
+      const response = await fetch(`${API_BASE_URL}/reset-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, new_password: newPassword }),
@@ -66,10 +83,8 @@ export default function Page() {
 
       const data = await response.json();
       if (response.ok) {
-        setSuccessMessage("Password reset successful! Redirecting to login...");
-        setTimeout(() => {
-          window.location.href = "/login"; // Redirect after success
-        }, 2000);
+        setSuccessMessage("Password reset successful! Redirecting...");
+        setTimeout(() => router.push("/login"), 2000);
       } else {
         setErrorMessage(data.error || "Password reset failed. Try again.");
       }
@@ -84,12 +99,12 @@ export default function Page() {
     <>
       <Navbar showBrand={false} showLoginButton={true} />
       <div className="bg-white mt-20">
-        <div className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[50px] mx-auto mt-4">
+        <div className="bg-[#F2F4FF] flex w-[553.77px] p-[66.66px_49.8px_49.8px_49.8px] flex-col justify-center items-center gap-[50px] mx-auto mt-4 rounded-lg shadow-lg">
           <div>
             <Image src={logo} alt="Logo" />
           </div>
 
-          {/* If token is present, show Reset Password form, otherwise show Request Reset Link form */}
+          {/* Conditional Rendering for Forms */}
           {!token ? (
             <>
               <span className="instruction-text">
