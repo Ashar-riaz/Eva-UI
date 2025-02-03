@@ -5,7 +5,6 @@ interface ServiceProps {
   readonly title: string;
   readonly description: string;
   readonly imageUrl: string;
-  readonly buttonText?: string;
   readonly topFeatureImage: string;
   readonly topFeatureText: string;
   readonly middleFeatureImage: string;
@@ -18,7 +17,6 @@ export default function Service({
   title,
   description,
   imageUrl,
-  buttonText,
   topFeatureImage,
   topFeatureText,
   middleFeatureImage,
